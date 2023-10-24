@@ -4,7 +4,6 @@ import 'package:note_app/home_Screen.dart';
 
 void main() async {
   await Hive.initFlutter();
-  var box = await Hive.openBox('Names');
   runApp(NoteApp());
 }
 
