@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/car.dart';
 import 'package:note_app/home_Screen.dart';
 
 void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('Names');
+  await Hive.openBox<car>('CarBox');
+  Hive.registerAdapter(carAdapter());
+
   runApp(NoteApp());
 }
 

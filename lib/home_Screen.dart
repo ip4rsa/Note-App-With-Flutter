@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/car.dart';
 
 class homeScreen extends StatefulWidget {
   const homeScreen({super.key});
@@ -13,6 +14,7 @@ var _controller = TextEditingController();
 
 class _homeScreenState extends State<homeScreen> {
   var box = Hive.box('Names');
+  var carBox = Hive.box<car>('CarBox');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
