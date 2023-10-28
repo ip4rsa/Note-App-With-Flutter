@@ -113,26 +113,20 @@ class _homeScreenState extends State<homeScreen> {
                       );
                     },
                   ),
-                  Text('تمرین زبان انگلیسی'),
+                  Text(
+                    'تمرین زبان انگلیسی',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
                 ],
               ),
-              Text('تمرین زبان انگلیسی کتاب آموزشگاه'),
+              Text(' زبان انگلیسی کتاب آموزشگاه'),
               Spacer(),
               getTimeAndEditBTN()
             ],
           ),
         ),
+        const SizedBox(width: 15),
         Image.asset('assets/images/Dictionary-pana1.png'),
-      ],
-    );
-  }
-
-  Column getTitle() {
-    return Column(
-      children: [
-        Text('fodgjifg'),
-        Text('fodgjifg'),
-        getTimeAndEditBTN(),
       ],
     );
   }

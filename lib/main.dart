@@ -8,10 +8,6 @@ import 'package:note_app/student.dart';
 void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('Names');
-  // Hive.registerAdapter(StudentAdapter());
-  // Hive.registerAdapter(carAdapter());
-  // await Hive.openBox<car>('CarBox');
-  // await Hive.openBox<student>('StudentBox');
   Hive.registerAdapter<Mobile>(MobileAdapter());
   await Hive.openBox<Mobile>('mobileBox');
 
@@ -33,6 +29,7 @@ class _NoteAppState extends State<NoteApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Shabnam',
         useMaterial3: true,
       ),
       home: homeScreen(),
