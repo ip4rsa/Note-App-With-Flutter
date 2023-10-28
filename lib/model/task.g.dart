@@ -1,38 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'car.dart';
+part of 'task.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class carAdapter extends TypeAdapter<car> {
+class taskModelAdapter extends TypeAdapter<taskModel> {
   @override
   final int typeId = 1;
 
   @override
-  car read(BinaryReader reader) {
+  taskModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return car(
-      name: fields[0] as String,
-      price: fields[2] as double,
-      topSpeed: fields[1] as int,
+    return taskModel(
+      title: fields[0] as String,
+      subTitle: fields[1] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, car obj) {
+  void write(BinaryWriter writer, taskModel obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.name)
-      ..writeByte(1)
-      ..write(obj.topSpeed)
       ..writeByte(2)
-      ..write(obj.price);
+      ..writeByte(0)
+      ..write(obj.title)
+      ..writeByte(1)
+      ..write(obj.subTitle);
   }
 
   @override
@@ -41,7 +38,7 @@ class carAdapter extends TypeAdapter<car> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is carAdapter &&
+      other is taskModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

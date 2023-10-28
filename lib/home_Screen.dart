@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
-import 'package:note_app/car.dart';
-import 'package:note_app/mobile.dart';
-import 'package:note_app/student.dart';
 
 class homeScreen extends StatefulWidget {
   const homeScreen({super.key});
@@ -18,7 +15,6 @@ var _controller = TextEditingController();
 class _homeScreenState extends State<homeScreen> {
   bool isChecked = false;
 
-  var mobileBox = Hive.box<Mobile>('mobileBox');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
