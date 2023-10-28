@@ -25,64 +25,69 @@ class _homeScreenState extends State<homeScreen> {
       body: Scaffold(
         backgroundColor: const Color(0xFFFAFAFA),
         body: Center(
-          child: getTaskItems(),
-        ),
-      ),
-    );
-  }
-
-  Container getTaskItems() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      width: 380,
-      height: 132,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        shadows: const [
-          BoxShadow(
-            color: Color(0x05000000),
-            blurRadius: 0,
-            offset: Offset(0, 0),
-            spreadRadius: 0,
+            child: GestureDetector(
+          onTap: () {
+            if (isChecked == false) {
+              isChecked = true;
+            } else {
+              isChecked = false;
+            }
+            setState(() {});
+          },
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            width: 380,
+            height: 132,
+            decoration: ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              shadows: const [
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 0,
+                  offset: Offset(0, 0),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 23,
+                  offset: Offset(0, 10),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 42,
+                  offset: Offset(0, 42),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x02000000),
+                  blurRadius: 56,
+                  offset: Offset(0, 94),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x00000000),
+                  blurRadius: 67,
+                  offset: Offset(0, 167),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x00000000),
+                  blurRadius: 73,
+                  offset: Offset(0, 261),
+                  spreadRadius: 0,
+                )
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: getMainContant(),
+            ),
           ),
-          BoxShadow(
-            color: Color(0x05000000),
-            blurRadius: 23,
-            offset: Offset(0, 10),
-            spreadRadius: 0,
-          ),
-          BoxShadow(
-            color: Color(0x05000000),
-            blurRadius: 42,
-            offset: Offset(0, 42),
-            spreadRadius: 0,
-          ),
-          BoxShadow(
-            color: Color(0x02000000),
-            blurRadius: 56,
-            offset: Offset(0, 94),
-            spreadRadius: 0,
-          ),
-          BoxShadow(
-            color: Color(0x00000000),
-            blurRadius: 67,
-            offset: Offset(0, 167),
-            spreadRadius: 0,
-          ),
-          BoxShadow(
-            color: Color(0x00000000),
-            blurRadius: 73,
-            offset: Offset(0, 261),
-            spreadRadius: 0,
-          )
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: getMainContant(),
+        )),
       ),
     );
   }
@@ -153,7 +158,7 @@ class _homeScreenState extends State<homeScreen> {
                   color: Colors.white,
                   fontSize: 12,
                   fontFamily: 'Shabnam',
-                  fontWeight: FontWeight.w700,
+                  // fontWeight: FontWeight.w700,
                   height: 0,
                   letterSpacing: -0.24,
                 ),
@@ -182,7 +187,7 @@ class _homeScreenState extends State<homeScreen> {
                   color: Color(0xFF18DAA3),
                   fontSize: 12,
                   fontFamily: 'Shabnam',
-                  fontWeight: FontWeight.w700,
+                  // fontWeight: FontWeight.w700,
                   height: 0,
                   letterSpacing: -0.24,
                 ),
