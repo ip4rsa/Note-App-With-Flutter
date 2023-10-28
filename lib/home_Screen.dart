@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/car.dart';
+import 'package:note_app/mobile.dart';
 import 'package:note_app/student.dart';
 
 class homeScreen extends StatefulWidget {
@@ -15,73 +16,72 @@ var _controller = TextEditingController();
 
 class _homeScreenState extends State<homeScreen> {
   var box = Hive.box('Names');
-  var carBox = Hive.box<car>('CarBox');
-  var studentBox = Hive.box<student>('StudentBox');
+  // var carBox = Hive.box<car>('CarBox');
+  // var studentBox = Hive.box<student>('StudentBox');
+  var mobileBox = Hive.box<Mobile>('mobileBox');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Scaffold(
+        backgroundColor: const Color(0xFFFAFAFA),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Home'),
-              TextField(
-                controller: _controller,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            width: 380,
+            height: 132,
+            decoration: ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(
-                  box.get(2) ?? 'Null',
+              shadows: const [
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 0,
+                  offset: Offset(0, 0),
+                  spreadRadius: 0,
                 ),
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 23,
+                  offset: Offset(0, 10),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 42,
+                  offset: Offset(0, 42),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x02000000),
+                  blurRadius: 56,
+                  offset: Offset(0, 94),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x00000000),
+                  blurRadius: 67,
+                  offset: Offset(0, 167),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x00000000),
+                  blurRadius: 73,
+                  offset: Offset(0, 261),
+                  spreadRadius: 0,
+                )
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image.asset('assets/images/Dictionary-pana1.png'),
+                ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  box.put(2, _controller.text);
-
-                  setState(() {});
-                },
-                child: const Text('show text'),
-                onLongPress: () {
-                  setState(
-                    () {
-                      _text = '';
-                    },
-                  );
-                },
-              ),
-              ElevatedButton(
-                child: const Text('Create'),
-                onPressed: () {
-                  // box.put(1, 'Parsa');
-                  // carBox.put(
-                  //     1, car(name: 'Tesla', price: 12000, topSpeed: 300));
-                  studentBox.put(
-                      1,
-                      student(
-                          name: 'Parsa', famly: 'Tesla', age: 19, grade: 21));
-                },
-              ),
-              ElevatedButton(
-                child: const Text('Read'),
-                onPressed: () {
-                  print(studentBox.get(1)!.famly);
-                },
-              ),
-              ElevatedButton(
-                child: const Text('update'),
-                onPressed: () {
-                  carBox.put(
-                      1, car(name: 'Mercedes', price: 900000, topSpeed: 400));
-                },
-              ),
-              ElevatedButton(
-                child: const Text('delete'),
-                onPressed: () {
-                  carBox.delete(1);
-                },
-              ),
-            ],
+            ),
           ),
         ),
       ),
