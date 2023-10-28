@@ -7,10 +7,10 @@ import 'package:note_app/student.dart';
 void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('Names');
-  await Hive.openBox<car>('CarBox');
-  Hive.registerAdapter(carAdapter());
-  await Hive.openBox<Student>('Students');
-  Hive.registerAdapter<Student>(StudentAdapter());
+  // await Hive.openBox<car>('CarBox');
+  // Hive.registerAdapter(carAdapter());
+  await Hive.openBox<student>('StudentBox');
+  Hive.registerAdapter(StudentAdapter());
 
   runApp(NoteApp());
 }

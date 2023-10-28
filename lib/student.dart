@@ -2,8 +2,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'student.g.dart';
 
 @HiveType(typeId: 2)
-class Student {
-  Student(
+class student {
+  student(
       {required this.name,
       required this.famly,
       required this.age,

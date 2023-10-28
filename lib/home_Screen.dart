@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/car.dart';
+import 'package:note_app/student.dart';
 
 class homeScreen extends StatefulWidget {
   const homeScreen({super.key});
@@ -15,6 +16,7 @@ var _controller = TextEditingController();
 class _homeScreenState extends State<homeScreen> {
   var box = Hive.box('Names');
   var carBox = Hive.box<car>('CarBox');
+  var studentBox = Hive.box<student>('StudentBox');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class _homeScreenState extends State<homeScreen> {
               ElevatedButton(
                 onPressed: () {
                   box.put(2, _controller.text);
+
                   setState(() {});
                 },
                 child: const Text('show text'),
@@ -50,26 +53,32 @@ class _homeScreenState extends State<homeScreen> {
               ElevatedButton(
                 child: const Text('Create'),
                 onPressed: () {
-                  box.put(1, 'Parsa');
+                  // box.put(1, 'Parsa');
+                  // carBox.put(
+                  //     1, car(name: 'Tesla', price: 12000, topSpeed: 300));
+                  studentBox.put(
+                      1,
+                      student(
+                          name: 'Parsa', famly: 'Tesla', age: 19, grade: 21));
                 },
               ),
               ElevatedButton(
                 child: const Text('Read'),
                 onPressed: () {
-                  var getText = box.get(1);
-                  print(getText);
+                  print(studentBox.get(1)!.famly);
                 },
               ),
               ElevatedButton(
                 child: const Text('update'),
                 onPressed: () {
-                  box.put(1, 'Sajjadian');
+                  carBox.put(
+                      1, car(name: 'Mercedes', price: 900000, topSpeed: 400));
                 },
               ),
               ElevatedButton(
                 child: const Text('delete'),
                 onPressed: () {
-                  box.delete(1);
+                  carBox.delete(1);
                 },
               ),
             ],
