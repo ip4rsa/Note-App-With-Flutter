@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app/add_task_screen.dart';
 import 'package:note_app/home_Screen.dart';
 import 'package:note_app/model/task.dart';
 
