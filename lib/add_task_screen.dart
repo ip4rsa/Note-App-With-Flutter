@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
+import 'package:note_app/model/task.dart';
 
 class addTaskScreen extends StatefulWidget {
   const addTaskScreen({super.key});
@@ -11,6 +13,10 @@ class addTaskScreen extends StatefulWidget {
 class _addTaskScreenState extends State<addTaskScreen> {
   FocusNode neghban1 = FocusNode();
   FocusNode neghban2 = FocusNode();
+  final TextEditingController controllerTaskTitle = TextEditingController();
+  final TextEditingController controllerTaskSubTitle = TextEditingController();
+
+  final box = Hive.box<taskModel>('TaskBox');
 
   @override
   void initState() {
@@ -38,6 +44,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: TextField(
+                controller: controllerTaskTitle,
                 focusNode: neghban1,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(17),
@@ -65,6 +72,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: TextField(
+                controller: controllerTaskSubTitle,
                 maxLines: 2,
                 focusNode: neghban2,
                 decoration: InputDecoration(
@@ -98,7 +106,11 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   backgroundColor: green,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14))),
-              onPressed: () {},
+              onPressed: () {
+                String taskTitle = controllerTaskTitle.text;
+                String taskSubTitle = controllerTaskSubTitle.text;
+                addTask(taskTitle, taskSubTitle);
+              },
               child: Text(
                 'اضافه کن',
                 style: TextStyle(color: Colors.white, fontSize: 18),
@@ -108,5 +120,11 @@ class _addTaskScreenState extends State<addTaskScreen> {
         ],
       ),
     );
+  }
+
+  addTask(String taskTitle, String taskSubTitle) {
+    var task = taskModel(title: taskTitle, subTitle: taskSubTitle);
+    box.put(1, task);
+    print(box.add(task));
   }
 }

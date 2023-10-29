@@ -7,7 +7,7 @@ import 'package:note_app/model/task.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(taskModelAdapter());
-  await Hive.openBox<taskModel>('taskModel');
+  await Hive.openBox<taskModel>('TaskBox');
 
   runApp(NoteApp());
 }
@@ -30,7 +30,7 @@ class _NoteAppState extends State<NoteApp> {
         fontFamily: 'Shabnam',
         useMaterial3: true,
       ),
-      home: addTaskScreen(),
+      home: homeScreen(),
     );
   }
 }
