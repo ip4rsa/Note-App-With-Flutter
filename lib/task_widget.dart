@@ -10,7 +10,7 @@ class TaskWidget extends StatefulWidget {
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
-  bool isChecked = false;
+  bool isDone = false;
   @override
   Widget build(BuildContext context) {
     return getTaskItem();
@@ -20,12 +20,9 @@ class _TaskWidgetState extends State<TaskWidget> {
     return Center(
         child: GestureDetector(
       onTap: () {
-        if (isChecked == false) {
-          isChecked = true;
-        } else {
-          isChecked = false;
-        }
-        setState(() {});
+        setState(() {
+          isDone = !isDone;
+        });
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -96,7 +93,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                 children: [
                   MSHCheckbox(
                     size: 28,
-                    value: isChecked,
+                    value: isDone,
                     colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
                       checkedColor: Color.fromARGB(255, 17, 171, 128),
                     ),
@@ -104,7 +101,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                     onChanged: (selected) {
                       setState(
                         () {
-                          isChecked = selected;
+                          isDone = selected;
                         },
                       );
                     },

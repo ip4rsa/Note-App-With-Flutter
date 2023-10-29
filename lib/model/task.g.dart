@@ -19,17 +19,20 @@ class taskModelAdapter extends TypeAdapter<taskModel> {
     return taskModel(
       title: fields[0] as String,
       subTitle: fields[1] as String,
+      isDone: fields[2] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, taskModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
-      ..write(obj.subTitle);
+      ..write(obj.subTitle)
+      ..writeByte(2)
+      ..write(obj.isDone);
   }
 
   @override

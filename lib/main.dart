@@ -24,12 +24,11 @@ var _controller = TextEditingController();
 class _NoteAppState extends State<NoteApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Shabnam',
-        useMaterial3: true,
-      ),
-      home: homeScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Shabnam',
+          useMaterial3: true,
+        ),
+        home: homeScreen());
   }
 }
