@@ -13,7 +13,6 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     isBoxCheckd = widget.task.isDone;
   }
