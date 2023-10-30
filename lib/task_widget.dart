@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:note_app/model/task.dart';
 
 class TaskWidget extends StatefulWidget {
@@ -10,7 +9,15 @@ class TaskWidget extends StatefulWidget {
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
-  bool isDone = false;
+  bool isBoxCheckd = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isBoxCheckd = widget.task.isDone;
+  }
+
   @override
   Widget build(BuildContext context) {
     return getTaskItem();
@@ -21,7 +28,9 @@ class _TaskWidgetState extends State<TaskWidget> {
         child: GestureDetector(
       onTap: () {
         setState(() {
-          isDone = !isDone;
+          isBoxCheckd = !isBoxCheckd;
+          widget.task.isDone = isBoxCheckd;
+          widget.task.save();
         });
       },
       child: Container(
@@ -91,19 +100,28 @@ class _TaskWidgetState extends State<TaskWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MSHCheckbox(
-                    size: 28,
-                    value: isDone,
-                    colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                      checkedColor: Color.fromARGB(255, 17, 171, 128),
-                    ),
-                    style: MSHCheckboxStyle.fillScaleCheck,
-                    onChanged: (selected) {
-                      setState(
-                        () {
-                          isDone = selected;
-                        },
-                      );
+                  // MSHCheckbox(
+                  //   size: 28,
+                  //   value: isDone,
+                  //   colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+                  //     checkedColor: Color.fromARGB(255, 17, 171, 128),
+                  //   ),
+                  //   style: MSHCheckboxStyle.fillScaleCheck,
+                  //   onChanged: (selected) {
+                  //     setState(
+                  //       () {
+                  //         isDone = selected;
+                  //       },
+                  //     );
+                  //   },
+                  // ),
+                  Checkbox(
+                    activeColor: Color.fromARGB(255, 17, 171, 128),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                    value: isBoxCheckd,
+                    onChanged: (isChekd) {
+                      isBoxCheckd = isChekd!;
                     },
                   ),
                   Text(
