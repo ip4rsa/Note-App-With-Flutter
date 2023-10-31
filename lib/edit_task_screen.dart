@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
 import 'package:note_app/model/task.dart';
+import 'package:time_pickerr/time_pickerr.dart';
+import 'package:toastification/toastification.dart';
 
 class editTaskScreen extends StatefulWidget {
   editTaskScreen({super.key, required this.task});
@@ -16,6 +18,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
   FocusNode neghban2 = FocusNode();
   TextEditingController? controllerTaskTitle;
   TextEditingController? controllerTaskSubTitle;
+  DateTime? _time;
 
   final box = Hive.box<taskModel>('TaskBox');
 
@@ -40,9 +43,8 @@ class _editTaskScreenState extends State<editTaskScreen> {
       body: ClipRRect(
         child: Column(
           children: [
-            SizedBox(height: 20),
             Image.asset('assets/images/editTask.png', height: 200),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Directionality(
@@ -70,7 +72,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Directionality(
@@ -99,10 +101,43 @@ class _editTaskScreenState extends State<editTaskScreen> {
                 ),
               ),
             ),
-            // SizedBox(height: 30),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: CustomHourPicker(
+                elevation: 2,
+                title: 'انتخاب زمان تسک',
+                titleStyle: TextStyle(color: green, fontSize: 17),
+                negativeButtonText: 'حذف',
+                negativeButtonStyle:
+                    TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
+                positiveButtonText: 'تایید زمان جدید',
+                positiveButtonStyle:
+                    TextStyle(color: green, fontWeight: FontWeight.bold),
+                onPositivePressed: (context, time) {
+                  _time = time;
+                  toastification.show(
+                    context: context,
+                    type: ToastificationType.success,
+                    style: ToastificationStyle.flat,
+                    title: 'زمان جدید تسک تنظیم شد.',
+                    alignment: Alignment.topCenter,
+                    autoCloseDuration: const Duration(seconds: 2),
+                    borderRadius: BorderRadius.circular(12.0),
+                    boxShadow: highModeShadow,
+                    direction: TextDirection.rtl,
+                    dragToClose: true,
+                    showProgressBar: false,
+                    closeButtonShowType: CloseButtonShowType.onHover,
+                  );
+                },
+                onNegativePressed: (context) {
+                  print('onNegative');
+                },
+              ),
+            ),
             Spacer(),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: .7,
@@ -131,6 +166,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
   editTAsk(String taskTitle, String taskSubTitle) {
     widget.task.title = taskTitle;
     widget.task.subTitle = taskSubTitle;
+    widget.task.time = _time!;
     widget.task.save();
   }
 }

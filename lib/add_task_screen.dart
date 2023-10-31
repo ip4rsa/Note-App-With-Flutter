@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
 import 'package:note_app/model/task.dart';
 import 'package:time_pickerr/time_pickerr.dart';
+import 'package:toastification/toastification.dart';
 
 class addTaskScreen extends StatefulWidget {
   const addTaskScreen({super.key});
@@ -103,7 +104,6 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 8),
             Directionality(
               textDirection: TextDirection.rtl,
               child: CustomHourPicker(
@@ -118,6 +118,20 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     TextStyle(color: green, fontWeight: FontWeight.bold),
                 onPositivePressed: (context, time) {
                   _time = time;
+                  toastification.show(
+                    context: context,
+                    type: ToastificationType.success,
+                    style: ToastificationStyle.flat,
+                    title: 'زمان تسک تنظیم شد.',
+                    alignment: Alignment.topCenter,
+                    autoCloseDuration: const Duration(seconds: 2),
+                    borderRadius: BorderRadius.circular(12.0),
+                    boxShadow: highModeShadow,
+                    direction: TextDirection.rtl,
+                    dragToClose: true,
+                    showProgressBar: false,
+                    closeButtonShowType: CloseButtonShowType.onHover,
+                  );
                 },
                 onNegativePressed: (context) {
                   print('onNegative');
@@ -156,8 +170,11 @@ class _addTaskScreenState extends State<addTaskScreen> {
   }
 
   addTask(String taskTitle, String taskSubTitle) {
-    var task =
-        taskModel(title: taskTitle, subTitle: taskSubTitle, time: _time!);
+    var task = taskModel(
+      title: taskTitle,
+      subTitle: taskSubTitle,
+      time: _time!,
+    );
     box.add(task);
   }
 }
