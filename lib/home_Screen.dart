@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -45,10 +46,19 @@ class _homeScreenState extends State<homeScreen> {
                 return true;
               },
               child: ListView.builder(
+                physics: BouncingScrollPhysics(),
                 itemCount: taskBox.values.length,
                 itemBuilder: (context, index) {
-                  var task = taskBox.values.toList();
-                  return TaskWidget(task: task[index]);
+                  var task = taskBox.values.toList()[index];
+                  return Dismissible(
+                    movementDuration: Duration(seconds: 2),
+                    direction: DismissDirection.endToStart,
+                    key: UniqueKey(),
+                    onDismissed: (direction) {
+                      task.delete();
+                    },
+                    child: TaskWidget(task: task),
+                  );
                 },
               ),
             );
@@ -57,15 +67,13 @@ class _homeScreenState extends State<homeScreen> {
         floatingActionButton: Visibility(
           visible: isFabVisible,
           child: FloatingActionButton(
-            backgroundColor: green,
+            backgroundColor: Color.fromARGB(255, 19, 177, 132),
             onPressed: () {
               Navigator.push(
-                context,
-                DialogRoute(
-                  context: context,
-                  builder: (context) => addTaskScreen(),
-                ),
-              );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => addTaskScreen(),
+                  ));
             },
             child: Icon(Icons.add, color: Colors.white),
           ),

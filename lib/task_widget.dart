@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/edit_task_screen.dart';
 import 'package:note_app/model/task.dart';
 
 class TaskWidget extends StatefulWidget {
@@ -173,32 +174,43 @@ class _TaskWidgetState extends State<TaskWidget> {
           ),
         ),
         const SizedBox(width: 15),
-        Container(
-          width: 83,
-          height: 28,
-          decoration: const BoxDecoration(
-            color: Color(0xFFE2F6F1),
-            borderRadius: BorderRadius.all(
-              Radius.circular(16.5),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text(
-                'ویرایش',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF18DAA3),
-                  fontSize: 12,
-                  fontFamily: 'Shabnam',
-                  // fontWeight: FontWeight.w700,
-                  height: 0,
-                  letterSpacing: -0.24,
-                ),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              DialogRoute(
+                context: context,
+                builder: (context) => editTaskScreen(task: widget.task),
               ),
-              Image.asset('assets/images/Edit.png'),
-            ],
+            );
+          },
+          child: Container(
+            width: 83,
+            height: 28,
+            decoration: const BoxDecoration(
+              color: Color(0xFFE2F6F1),
+              borderRadius: BorderRadius.all(
+                Radius.circular(16.5),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  'ویرایش',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF18DAA3),
+                    fontSize: 12,
+                    fontFamily: 'Shabnam',
+                    // fontWeight: FontWeight.w700,
+                    height: 0,
+                    letterSpacing: -0.24,
+                  ),
+                ),
+                Image.asset('assets/images/Edit.png'),
+              ],
+            ),
           ),
         ),
       ],

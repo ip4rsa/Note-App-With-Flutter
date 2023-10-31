@@ -1,33 +1,29 @@
-import 'package:day_night_time_picker/lib/constants.dart';
-import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
-import 'package:day_night_time_picker/lib/state/time.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
 import 'package:note_app/model/task.dart';
-import 'package:time_pickerr/time_pickerr.dart';
 
-class addTaskScreen extends StatefulWidget {
-  const addTaskScreen({super.key});
+class editTaskScreen extends StatefulWidget {
+  editTaskScreen({super.key, required this.task});
+  taskModel task;
 
   @override
-  State<addTaskScreen> createState() => _addTaskScreenState();
+  State<editTaskScreen> createState() => _editTaskScreenState();
 }
 
-DateTime? _time;
-bool iosStyle = true;
-
-class _addTaskScreenState extends State<addTaskScreen> {
+class _editTaskScreenState extends State<editTaskScreen> {
   FocusNode neghban1 = FocusNode();
   FocusNode neghban2 = FocusNode();
-  final TextEditingController controllerTaskTitle = TextEditingController();
-  final TextEditingController controllerTaskSubTitle = TextEditingController();
+  TextEditingController? controllerTaskTitle;
+  TextEditingController? controllerTaskSubTitle;
 
   final box = Hive.box<taskModel>('TaskBox');
 
   @override
   void initState() {
     super.initState();
+    controllerTaskTitle = TextEditingController(text: widget.task.title);
+    controllerTaskSubTitle = TextEditingController(text: widget.task.subTitle);
     neghban1.addListener(() {
       setState(() {});
     });
@@ -45,7 +41,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
         child: Column(
           children: [
             SizedBox(height: 20),
-            Image.asset('assets/images/addTaskk.png', height: 200),
+            Image.asset('assets/images/editTask.png', height: 200),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -56,7 +52,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   focusNode: neghban1,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(17),
-                    labelText: ' عنوان تسک جدید ',
+                    labelText: ' عنوان جدید ',
                     labelStyle: TextStyle(
                         color: neghban1.hasFocus ? green : gray,
                         fontFamily: 'Shabnam'),
@@ -74,7 +70,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Directionality(
@@ -85,7 +81,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   focusNode: neghban2,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(17),
-                    labelText: ' توضیحات تسک جدید ',
+                    labelText: ' توضیحات جدید ',
                     labelStyle: TextStyle(
                         color: neghban2.hasFocus ? green : gray,
                         fontFamily: 'Shabnam'),
@@ -103,30 +99,10 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 8),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: CustomHourPicker(
-                elevation: 2,
-                title: 'انتخاب زمان تسک',
-                titleStyle: TextStyle(color: green, fontSize: 17),
-                negativeButtonText: 'حذف',
-                negativeButtonStyle:
-                    TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
-                positiveButtonText: 'تایید زمان',
-                positiveButtonStyle:
-                    TextStyle(color: green, fontWeight: FontWeight.bold),
-                onPositivePressed: (context, time) {
-                  _time = time;
-                },
-                onNegativePressed: (context) {
-                  print('onNegative');
-                },
-              ),
-            ),
+            // SizedBox(height: 30),
             Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.all(20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: .7,
@@ -135,16 +111,13 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14))),
                 onPressed: () {
-                  String taskTitle = controllerTaskTitle.text;
-                  String taskSubTitle = controllerTaskSubTitle.text;
-                  addTask(
-                    taskTitle,
-                    taskSubTitle,
-                  );
+                  String taskTitle = controllerTaskTitle!.text;
+                  String taskSubTitle = controllerTaskSubTitle!.text;
+                  editTAsk(taskTitle, taskSubTitle);
                   Navigator.pop(context);
                 },
                 child: Text(
-                  'اضافه کن',
+                  'ویرایش کن',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
@@ -155,9 +128,9 @@ class _addTaskScreenState extends State<addTaskScreen> {
     );
   }
 
-  addTask(String taskTitle, String taskSubTitle) {
-    var task =
-        taskModel(title: taskTitle, subTitle: taskSubTitle, time: _time!);
-    box.add(task);
+  editTAsk(String taskTitle, String taskSubTitle) {
+    widget.task.title = taskTitle;
+    widget.task.subTitle = taskSubTitle;
+    widget.task.save();
   }
 }

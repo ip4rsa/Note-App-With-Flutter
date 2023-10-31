@@ -1,10 +1,14 @@
 import 'package:hive_flutter/hive_flutter.dart';
-
 part 'task.g.dart';
 
 @HiveType(typeId: 1)
 class taskModel extends HiveObject {
-  taskModel({required this.title, required this.subTitle, this.isDone = false});
+  taskModel({
+    required this.title,
+    required this.subTitle,
+    this.isDone = false,
+    required this.time,
+  });
 
   @HiveField(0)
   String title;
@@ -14,4 +18,7 @@ class taskModel extends HiveObject {
 
   @HiveField(2)
   bool isDone;
+
+  @HiveField(3)
+  DateTime time;
 }

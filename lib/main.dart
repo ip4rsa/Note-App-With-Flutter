@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/constants/colors.dart';
 import 'package:note_app/home_Screen.dart';
 import 'package:note_app/model/task.dart';
 
@@ -26,6 +27,7 @@ class _NoteAppState extends State<NoteApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          primaryColor: green,
           fontFamily: 'Shabnam',
           useMaterial3: true,
         ),
