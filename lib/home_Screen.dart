@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/add_task_screen.dart';
 import 'package:note_app/constants/colors.dart';
@@ -17,7 +18,9 @@ var _controller = TextEditingController();
 
 class _homeScreenState extends State<homeScreen> {
   bool isChecked = false;
+
   var taskBox = Hive.box<taskModel>('taskBox');
+  bool isFabVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -27,27 +30,45 @@ class _homeScreenState extends State<homeScreen> {
         body: ValueListenableBuilder(
           valueListenable: taskBox.listenable(),
           builder: (context, value, child) {
-            return ListView.builder(
-              itemCount: taskBox.values.length,
-              itemBuilder: (context, index) {
-                var task = taskBox.values.toList();
-                return TaskWidget(task: task[index]);
+            return NotificationListener<UserScrollNotification>(
+              onNotification: (notification) {
+                setState(
+                  () {
+                    if (notification.direction == ScrollDirection.forward) {
+                      isFabVisible = true;
+                    }
+                    if (notification.direction == ScrollDirection.reverse) {
+                      isFabVisible = false;
+                    }
+                  },
+                );
+                return true;
               },
-            );
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: green,
-          onPressed: () {
-            Navigator.push(
-              context,
-              DialogRoute(
-                context: context,
-                builder: (context) => addTaskScreen(),
+              child: ListView.builder(
+                itemCount: taskBox.values.length,
+                itemBuilder: (context, index) {
+                  var task = taskBox.values.toList();
+                  return TaskWidget(task: task[index]);
+                },
               ),
             );
           },
-          child: Icon(Icons.add, color: Colors.white),
+        ),
+        floatingActionButton: Visibility(
+          visible: isFabVisible,
+          child: FloatingActionButton(
+            backgroundColor: green,
+            onPressed: () {
+              Navigator.push(
+                context,
+                DialogRoute(
+                  context: context,
+                  builder: (context) => addTaskScreen(),
+                ),
+              );
+            },
+            child: Icon(Icons.add, color: Colors.white),
+          ),
         ),
       ),
     );
