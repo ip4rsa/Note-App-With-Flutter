@@ -36,7 +36,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 20),
           Image.asset('assets/images/AddTask.png', height: 180),
           SizedBox(height: 20),
           Padding(
@@ -110,6 +110,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 String taskTitle = controllerTaskTitle.text;
                 String taskSubTitle = controllerTaskSubTitle.text;
                 addTask(taskTitle, taskSubTitle);
+                Navigator.pop(context);
               },
               child: Text(
                 'اضافه کن',

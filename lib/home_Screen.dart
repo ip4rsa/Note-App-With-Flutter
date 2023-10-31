@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/add_task_screen.dart';
+import 'package:note_app/constants/colors.dart';
 import 'package:note_app/model/task.dart';
 import 'package:note_app/task_widget.dart';
 
@@ -22,12 +24,30 @@ class _homeScreenState extends State<homeScreen> {
     return Scaffold(
       body: Scaffold(
         backgroundColor: const Color(0xFFFAFAFA),
-        body: ListView.builder(
-          itemCount: taskBox.values.length,
-          itemBuilder: (context, index) {
-            var task = taskBox.values.toList()[index];
-            return TaskWidget(task: task);
+        body: ValueListenableBuilder(
+          valueListenable: taskBox.listenable(),
+          builder: (context, value, child) {
+            return ListView.builder(
+              itemCount: taskBox.values.length,
+              itemBuilder: (context, index) {
+                var task = taskBox.values.toList();
+                return TaskWidget(task: task[index]);
+              },
+            );
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: green,
+          onPressed: () {
+            Navigator.push(
+              context,
+              DialogRoute(
+                context: context,
+                builder: (context) => addTaskScreen(),
+              ),
+            );
+          },
+          child: Icon(Icons.add, color: Colors.white),
         ),
       ),
     );
