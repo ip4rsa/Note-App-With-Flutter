@@ -155,14 +155,16 @@ class _TaskWidgetState extends State<TaskWidget> {
             ),
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                '۱۰:۰۰',
+                '${widget.task.time.hour}:${widget.task.time.minute}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
                   fontFamily: 'Shabnam',
                   // fontWeight: FontWeight.w700,
                   height: 0,
