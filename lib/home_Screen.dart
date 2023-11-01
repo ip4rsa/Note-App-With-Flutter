@@ -1,9 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/add_task_screen.dart';
-import 'package:note_app/constants/colors.dart';
 import 'package:note_app/model/task.dart';
 import 'package:note_app/task_widget.dart';
 

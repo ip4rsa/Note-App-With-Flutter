@@ -15,6 +15,8 @@ class addTaskScreen extends StatefulWidget {
 
 DateTime? _time;
 bool iosStyle = true;
+int selectedIndex = 0;
+int selectedTaskTypeItem = 0;
 
 class _addTaskScreenState extends State<addTaskScreen> {
   FocusNode neghban1 = FocusNode();
@@ -185,11 +187,16 @@ class _addTaskScreenState extends State<addTaskScreen> {
   }
 }
 
-class getTaskTypeItems extends StatelessWidget {
+class getTaskTypeItems extends StatefulWidget {
   const getTaskTypeItems({
     super.key,
   });
 
+  @override
+  State<getTaskTypeItems> createState() => _getTaskTypeItemsState();
+}
+
+class _getTaskTypeItemsState extends State<getTaskTypeItems> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -203,11 +210,17 @@ class getTaskTypeItems extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
-                print(index);
+                setState(() {
+                  selectedTaskTypeItem = index;
+                });
               },
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: green),
+                  border: Border.all(
+                      width: 2.3,
+                      color: selectedTaskTypeItem == index
+                          ? green
+                          : Color.fromARGB(78, 140, 140, 140)),
                   borderRadius: BorderRadius.all(
                     Radius.circular(15),
                   ),
