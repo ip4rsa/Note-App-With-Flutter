@@ -118,7 +118,10 @@ class _TaskWidgetState extends State<TaskWidget> {
                   Checkbox(
                     activeColor: Color.fromARGB(255, 17, 171, 128),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6),
+                      ),
+                    ),
                     value: isBoxCheckd,
                     onChanged: (isChekd) {
                       isBoxCheckd = isChekd!;
@@ -151,7 +154,7 @@ class _TaskWidgetState extends State<TaskWidget> {
           decoration: const BoxDecoration(
             color: Color(0xFF18DAA3),
             borderRadius: BorderRadius.all(
-              Radius.circular(16.5),
+              Radius.circular(13),
             ),
           ),
           child: Row(
@@ -159,16 +162,15 @@ class _TaskWidgetState extends State<TaskWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                '${widget.task.time.hour}:${widget.task.time.minute}',
+                '${widget.task.time.hour}:${getMintusTimeZero(widget.task.time)}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 13,
+                  fontSize: 14,
                   fontFamily: 'Shabnam',
                   // fontWeight: FontWeight.w700,
-                  height: 0,
-                  letterSpacing: -0.24,
+                  height: 2.2,
                 ),
               ),
               Image.asset('assets/images/Time.png'),
@@ -187,12 +189,12 @@ class _TaskWidgetState extends State<TaskWidget> {
             );
           },
           child: Container(
-            width: 83,
+            width: 87,
             height: 28,
             decoration: const BoxDecoration(
               color: Color(0xFFE2F6F1),
               borderRadius: BorderRadius.all(
-                Radius.circular(16.5),
+                Radius.circular(13),
               ),
             ),
             child: Row(
@@ -203,11 +205,8 @@ class _TaskWidgetState extends State<TaskWidget> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF18DAA3),
-                    fontSize: 12,
+                    fontSize: 13,
                     fontFamily: 'Shabnam',
-                    // fontWeight: FontWeight.w700,
-                    height: 0,
-                    letterSpacing: -0.24,
                   ),
                 ),
                 Image.asset('assets/images/Edit.png'),
@@ -217,5 +216,13 @@ class _TaskWidgetState extends State<TaskWidget> {
         ),
       ],
     );
+  }
+
+  String getMintusTimeZero(DateTime time) {
+    if (time.minute < 10) {
+      return '0${time.minute}';
+    } else {
+      return time.minute.toString();
+    }
   }
 }

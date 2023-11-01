@@ -105,7 +105,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
               textDirection: TextDirection.rtl,
               child: CustomHourPicker(
                 elevation: 2,
-                title: 'انتخاب زمان تسک',
+                title: 'انتخاب زمان جدید تسک',
                 titleStyle: TextStyle(color: green, fontSize: 17),
                 negativeButtonText: 'حذف',
                 negativeButtonStyle:
