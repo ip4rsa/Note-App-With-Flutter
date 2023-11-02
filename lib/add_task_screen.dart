@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
 import 'package:note_app/model/task.dart';
+import 'package:note_app/model/taskType_Enum.dart';
+import 'package:note_app/model/task_taype_model.dart';
 import 'package:note_app/model/task_type_data.dart';
 import 'package:time_pickerr/time_pickerr.dart';
 import 'package:toastification/toastification.dart';
@@ -180,6 +182,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
       title: taskTitle,
       subTitle: taskSubTitle,
       time: _time!,
+      taskType: taskDataType[0],
     );
     box.add(task);
   }
