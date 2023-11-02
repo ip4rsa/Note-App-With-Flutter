@@ -141,32 +141,67 @@ class _addTaskScreenState extends State<addTaskScreen> {
               ),
               // Spacer(),
               getTaskTypeItems(),
-              SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: .7,
-                    minimumSize: Size(150, 50),
-                    backgroundColor: green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+                padding: const EdgeInsets.all(5.0),
+                child: Divider(
+                  color: Color.fromARGB(68, 158, 158, 158),
+                  height: 40,
+                  indent: 30,
+                  endIndent: 30,
+                ),
+              ),
+              // SizedBox(height: 35),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: .7,
+                        minimumSize: Size(150, 50),
+                        backgroundColor: green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                      onPressed: () {
+                        String taskTitle = controllerTaskTitle.text;
+                        String taskSubTitle = controllerTaskSubTitle.text;
+                        addTask(
+                          taskTitle,
+                          taskSubTitle,
+                        );
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'اضافه کن',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    String taskTitle = controllerTaskTitle.text;
-                    String taskSubTitle = controllerTaskSubTitle.text;
-                    addTask(
-                      taskTitle,
-                      taskSubTitle,
-                    );
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'اضافه کن',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  SizedBox(width: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: .2,
+                        minimumSize: Size(100, 50),
+                        backgroundColor: Color.fromARGB(255, 199, 78, 69),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'بازگشت',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               )
             ],
           ),

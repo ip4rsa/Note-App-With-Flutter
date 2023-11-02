@@ -49,7 +49,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: 1020,
+          height: 1050,
           child: Column(
             children: [
               Image.asset('assets/images/editTask.png', height: 200),
@@ -118,7 +118,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
                   elevation: 2,
                   title: 'انتخاب زمان جدید تسک',
                   titleStyle: TextStyle(color: green, fontSize: 17),
-                  negativeButtonText: 'حذف',
+                  negativeButtonText: '',
                   negativeButtonStyle:
                       TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
                   positiveButtonText: 'تایید زمان جدید',
@@ -199,27 +199,61 @@ class _editTaskScreenState extends State<editTaskScreen> {
                   },
                 ),
               ),
-              Spacer(),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: .7,
-                      minimumSize: Size(150, 50),
-                      backgroundColor: green,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14))),
-                  onPressed: () {
-                    String taskTitle = controllerTaskTitle!.text;
-                    String taskSubTitle = controllerTaskSubTitle!.text;
-                    editTAsk(taskTitle, taskSubTitle);
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'ویرایش کن',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
+                padding: const EdgeInsets.all(5.0),
+                child: Divider(
+                  color: Color.fromARGB(68, 158, 158, 158),
+                  height: 40,
+                  indent: 30,
+                  endIndent: 30,
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: .7,
+                          minimumSize: Size(150, 50),
+                          backgroundColor: green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14))),
+                      onPressed: () {
+                        String taskTitle = controllerTaskTitle!.text;
+                        String taskSubTitle = controllerTaskSubTitle!.text;
+                        editTAsk(taskTitle, taskSubTitle);
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'ویرایش کن',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: .2,
+                        minimumSize: Size(100, 50),
+                        backgroundColor: Color.fromARGB(255, 199, 78, 69),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'بازگشت',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
