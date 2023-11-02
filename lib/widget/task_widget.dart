@@ -170,10 +170,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
+                  fontSize: 13,
                   fontFamily: 'Shabnam',
                   // fontWeight: FontWeight.w700,
-                  height: 2.2,
                 ),
               ),
               Image.asset('assets/images/Time.png'),
