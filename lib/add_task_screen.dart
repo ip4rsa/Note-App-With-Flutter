@@ -113,7 +113,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   elevation: 2,
                   title: 'انتخاب زمان تسک',
                   titleStyle: TextStyle(color: green, fontSize: 17),
-                  negativeButtonText: 'حذف',
+                  negativeButtonText: '',
                   negativeButtonStyle:
                       TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
                   positiveButtonText: 'تایید زمان',
@@ -136,9 +136,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                       closeButtonShowType: CloseButtonShowType.onHover,
                     );
                   },
-                  onNegativePressed: (context) {
-                    print('onNegative');
-                  },
+                  onNegativePressed: (context) {},
                 ),
               ),
               // Spacer(),
