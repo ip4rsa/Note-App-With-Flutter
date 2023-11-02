@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app/model/task_taype_model.dart';
+import 'package:note_app/data/task_taype_model.dart';
+
 part 'task.g.dart';
 
 @HiveType(typeId: 1)

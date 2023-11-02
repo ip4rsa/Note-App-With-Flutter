@@ -1,5 +1,5 @@
-import 'package:note_app/model/taskType_Enum.dart';
-import 'package:note_app/model/task_taype_model.dart';
+import 'package:note_app/data/taskType_Enum.dart';
+import 'package:note_app/data/task_taype_model.dart';
 
 List<TaskType> taskDataType = [
   TaskType(

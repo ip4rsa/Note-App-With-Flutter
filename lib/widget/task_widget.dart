@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/edit_task_screen.dart';
-import 'package:note_app/model/task.dart';
+import 'package:note_app/data/task.dart';
+import 'package:note_app/Screen/edit_task_screen.dart';
 
 class TaskWidget extends StatefulWidget {
   TaskWidget({super.key, required this.task});
@@ -115,17 +115,20 @@ class _TaskWidgetState extends State<TaskWidget> {
                   //     );
                   //   },
                   // ),
-                  Checkbox(
-                    activeColor: Color.fromARGB(255, 17, 171, 128),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(6),
+                  Transform.scale(
+                    scale: 1.26,
+                    child: Checkbox(
+                      activeColor: Color.fromARGB(255, 17, 171, 128),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(6),
+                        ),
                       ),
+                      value: isBoxCheckd,
+                      onChanged: (isChekd) {
+                        isBoxCheckd = isChekd!;
+                      },
                     ),
-                    value: isBoxCheckd,
-                    onChanged: (isChekd) {
-                      isBoxCheckd = isChekd!;
-                    },
                   ),
                   Text(
                     widget.task.title,
@@ -140,7 +143,7 @@ class _TaskWidgetState extends State<TaskWidget> {
           ),
         ),
         const SizedBox(width: 15),
-        Image.asset('assets/images/Dictionary-pana1.png'),
+        Image.asset(widget.task.taskType.image),
       ],
     );
   }
@@ -198,6 +201,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Text(
