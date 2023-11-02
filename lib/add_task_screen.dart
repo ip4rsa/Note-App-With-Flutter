@@ -182,7 +182,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
       title: taskTitle,
       subTitle: taskSubTitle,
       time: _time!,
-      taskType: taskDataType[0],
+      taskType: taskDataType[selectedTaskTypeItem],
     );
     box.add(task);
   }
