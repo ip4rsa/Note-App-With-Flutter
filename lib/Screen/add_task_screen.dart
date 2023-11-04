@@ -43,6 +43,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFAFAFA),
       body: ClipRRect(
         child: SingleChildScrollView(
           child: Column(
@@ -152,58 +153,46 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 ),
               ),
               // SizedBox(height: 35),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: .7,
-                        minimumSize: Size(150, 50),
-                        backgroundColor: green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      onPressed: () {
-                        String taskTitle = controllerTaskTitle.text;
-                        String taskSubTitle = controllerTaskSubTitle.text;
-                        addTask(
-                          taskTitle,
-                          taskSubTitle,
-                        );
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'اضافه کن',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: .7,
+                    minimumSize: Size(150, 50),
+                    backgroundColor: green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
                     ),
                   ),
-                  SizedBox(width: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: .2,
-                        minimumSize: Size(100, 50),
-                        backgroundColor: Color.fromARGB(255, 199, 78, 69),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'بازگشت',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ),
+                  onPressed: () {
+                    String taskTitle = controllerTaskTitle.text;
+                    String taskSubTitle = controllerTaskSubTitle.text;
+                    addTask(
+                      taskTitle,
+                      taskSubTitle,
+                    );
+                    toastification.show(
+                      context: context,
+                      type: ToastificationType.success,
+                      style: ToastificationStyle.flat,
+                      title: 'تسک جدید شما با موفقیت اضافه شد.',
+                      alignment: Alignment.topCenter,
+                      autoCloseDuration: const Duration(seconds: 3),
+                      borderRadius: BorderRadius.circular(12.0),
+                      boxShadow: highModeShadow,
+                      direction: TextDirection.rtl,
+                      dragToClose: true,
+                      showProgressBar: false,
+                      closeButtonShowType: CloseButtonShowType.onHover,
+                    );
+                  },
+                  child: Text(
+                    'اضافه کن',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                ],
-              )
+                ),
+              ),
+              SizedBox(height: 90),
             ],
           ),
         ),
@@ -246,47 +235,52 @@ class _getTaskTypeItemsState extends State<getTaskTypeItems> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-                onTap: () {
-                  setState(() {
-                    selectedTaskTypeItem = index;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: selectedTaskTypeItem == index
-                        ? green
-                        : Colors.transparent,
-                    border: Border.all(
-                        width: 2.3,
-                        color: selectedTaskTypeItem == index
-                            ? green
-                            : Color.fromARGB(78, 140, 140, 140)),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
+              onTap: () {
+                setState(() {
+                  selectedTaskTypeItem = index;
+                });
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: selectedTaskTypeItem == index
+                      ? green
+                      : Colors.transparent,
+                  border: Border.all(
+                      width: 2.3,
+                      color: selectedTaskTypeItem == index
+                          ? green
+                          : Color.fromARGB(78, 140, 140, 140)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(taskDataType[index].image, scale: 15),
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:
-                            Image.asset(taskDataType[index].image, scale: 15),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(taskDataType[index].title,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: selectedTaskTypeItem == index
-                                    ? Colors.white
-                                    : Colors.black)),
-                      ),
-                    ],
-                  ),
-                )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(taskDataType[index].title,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: selectedTaskTypeItem == index
+                                  ? Colors.white
+                                  : Colors.black)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           );
         },
       ),
     );
   }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 }

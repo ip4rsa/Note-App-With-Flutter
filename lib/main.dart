@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/Screen/main_Screen.dart';
 import 'package:note_app/constants/colors.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/data/taskType_Enum.dart';
@@ -29,12 +30,13 @@ var _controller = TextEditingController();
 class _NoteAppState extends State<NoteApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: green,
-          fontFamily: 'Shabnam',
-          useMaterial3: true,
-        ),
-        home: homeScreen());
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: green,
+        fontFamily: 'Shabnam',
+        useMaterial3: true,
+      ),
+      home: MainScreen(),
+    );
   }
 }

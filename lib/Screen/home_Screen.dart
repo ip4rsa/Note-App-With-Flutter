@@ -73,20 +73,6 @@ class _homeScreenState extends State<homeScreen> {
             );
           },
         ),
-        floatingActionButton: Visibility(
-          visible: isFabVisible,
-          child: FloatingActionButton(
-            backgroundColor: Color.fromARGB(255, 19, 177, 132),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => addTaskScreen(),
-                  ));
-            },
-            child: Image.asset('assets/images/icon_add.png'),
-          ),
-        ),
       ),
     );
   }
