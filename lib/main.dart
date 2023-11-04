@@ -5,7 +5,6 @@ import 'package:note_app/constants/colors.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/data/taskType_Enum.dart';
 import 'package:note_app/data/task_taype_model.dart';
-import 'package:note_app/Screen/home_Screen.dart';
 
 void main() async {
   await Hive.initFlutter();
