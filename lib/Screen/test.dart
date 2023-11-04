@@ -7,12 +7,26 @@ class test extends StatefulWidget {
   State<test> createState() => _testState();
 }
 
+final TextEditingController _nameController = TextEditingController();
+
 class _testState extends State<test> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("data"),
+        child: Column(
+          children: [
+            TextField(
+              controller: _nameController,
+            ),
+            Text(_nameController.text),
+            TextButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                child: Text('submit'))
+          ],
+        ),
       ),
     );
   }

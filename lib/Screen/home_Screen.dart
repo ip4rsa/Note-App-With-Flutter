@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/Screen/add_task_screen.dart';
 import 'package:note_app/Screen/test.dart';
 import 'package:note_app/data/task.dart';
+import 'package:note_app/widget/appBar_widget.dart';
 import 'package:note_app/widget/task_widget.dart';
 
 class homeScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class homeScreen extends StatefulWidget {
 
 String _text = '';
 var _controller = TextEditingController();
+final TextEditingController _nameController = TextEditingController();
 
 class _homeScreenState extends State<homeScreen> {
   bool isChecked = false;
@@ -27,6 +29,10 @@ class _homeScreenState extends State<homeScreen> {
     bool isShowItemList = false;
     return Scaffold(
       body: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 60),
+          child: getAppBar(),
+        ),
         backgroundColor: const Color(0xFFFAFAFA),
         body: ValueListenableBuilder(
           valueListenable: taskBox.listenable(),
@@ -78,7 +84,7 @@ class _homeScreenState extends State<homeScreen> {
                     builder: (context) => addTaskScreen(),
                   ));
             },
-            child: Icon(Icons.add, color: Colors.white),
+            child: Image.asset('assets/images/icon_add.png'),
           ),
         ),
       ),

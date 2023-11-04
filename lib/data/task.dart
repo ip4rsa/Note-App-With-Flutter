@@ -12,6 +12,7 @@ class taskModel extends HiveObject {
     required this.time,
     required this.taskType,
     required this.opacity,
+    required this.userName,
   });
 
   @HiveField(0)
@@ -31,4 +32,7 @@ class taskModel extends HiveObject {
 
   @HiveField(5)
   double opacity;
+
+  @HiveField(6)
+  String userName;
 }

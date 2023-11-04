@@ -23,13 +23,14 @@ class taskModelAdapter extends TypeAdapter<taskModel> {
       time: fields[3] as DateTime,
       taskType: fields[4] as TaskType,
       opacity: fields[5] as double,
+      userName: fields[6] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, taskModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class taskModelAdapter extends TypeAdapter<taskModel> {
       ..writeByte(4)
       ..write(obj.taskType)
       ..writeByte(5)
-      ..write(obj.opacity);
+      ..write(obj.opacity)
+      ..writeByte(6)
+      ..write(obj.userName);
   }
 
   @override
