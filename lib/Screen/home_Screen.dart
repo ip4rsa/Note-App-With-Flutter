@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/Screen/add_task_screen.dart';
+import 'package:note_app/Screen/test.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/widget/task_widget.dart';
 
@@ -23,6 +24,7 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isShowItemList = false;
     return Scaffold(
       body: Scaffold(
         backgroundColor: const Color(0xFFFAFAFA),
@@ -41,24 +43,27 @@ class _homeScreenState extends State<homeScreen> {
                     }
                   },
                 );
+
                 return true;
               },
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: taskBox.values.length,
-                itemBuilder: (context, index) {
-                  var task = taskBox.values.toList()[index];
-                  return Dismissible(
-                    movementDuration: Duration(seconds: 2),
-                    direction: DismissDirection.endToStart,
-                    key: UniqueKey(),
-                    onDismissed: (direction) {
-                      task.delete();
-                    },
-                    child: TaskWidget(task: task),
-                  );
-                },
-              ),
+              child: isShowItemList == true
+                  ? test()
+                  : ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemCount: taskBox.values.length,
+                      itemBuilder: (context, index) {
+                        var task = taskBox.values.toList()[index];
+                        return Dismissible(
+                          movementDuration: Duration(seconds: 1),
+                          direction: DismissDirection.endToStart,
+                          key: UniqueKey(),
+                          onDismissed: (direction) {
+                            task.delete();
+                          },
+                          child: TaskWidget(task: task),
+                        );
+                      },
+                    ),
             );
           },
         ),

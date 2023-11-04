@@ -11,6 +11,7 @@ class taskModel extends HiveObject {
     this.isDone = false,
     required this.time,
     required this.taskType,
+    required this.opacity,
   });
 
   @HiveField(0)
@@ -27,4 +28,7 @@ class taskModel extends HiveObject {
 
   @HiveField(4)
   TaskType taskType;
+
+  @HiveField(5)
+  double opacity;
 }

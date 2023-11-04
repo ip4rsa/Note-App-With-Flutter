@@ -17,6 +17,7 @@ DateTime? _time;
 bool iosStyle = true;
 int selectedIndex = 0;
 int selectedTaskTypeItem = 0;
+double _opacity = 1;
 
 class _addTaskScreenState extends State<addTaskScreen> {
   FocusNode neghban1 = FocusNode();
@@ -216,6 +217,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
       subTitle: taskSubTitle,
       time: _time!,
       taskType: taskDataType[selectedTaskTypeItem],
+      opacity: _opacity,
     );
     box.add(task);
   }

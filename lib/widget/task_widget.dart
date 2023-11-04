@@ -11,11 +11,13 @@ class TaskWidget extends StatefulWidget {
 
 class _TaskWidgetState extends State<TaskWidget> {
   bool isBoxCheckd = false;
+  double _opacity = 1;
 
   @override
   void initState() {
     super.initState();
     isBoxCheckd = widget.task.isDone;
+    _opacity = widget.task.opacity;
   }
 
   @override
@@ -30,60 +32,66 @@ class _TaskWidgetState extends State<TaskWidget> {
         setState(() {
           isBoxCheckd = !isBoxCheckd;
           widget.task.isDone = isBoxCheckd;
+          isBoxCheckd == true ? _opacity = .5 : _opacity = 1;
+          widget.task.opacity = _opacity;
           widget.task.save();
         });
       },
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        width: 380,
-        height: 132,
-        decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+      child: AnimatedOpacity(
+        opacity: _opacity,
+        duration: Duration(milliseconds: 300),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          width: 380,
+          height: 132,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x05000000),
+                blurRadius: 0,
+                offset: Offset(0, 0),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x05000000),
+                blurRadius: 23,
+                offset: Offset(0, 10),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x05000000),
+                blurRadius: 42,
+                offset: Offset(0, 42),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x02000000),
+                blurRadius: 56,
+                offset: Offset(0, 94),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x00000000),
+                blurRadius: 67,
+                offset: Offset(0, 167),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x00000000),
+                blurRadius: 73,
+                offset: Offset(0, 261),
+                spreadRadius: 0,
+              )
+            ],
           ),
-          shadows: const [
-            BoxShadow(
-              color: Color(0x05000000),
-              blurRadius: 0,
-              offset: Offset(0, 0),
-              spreadRadius: 0,
-            ),
-            BoxShadow(
-              color: Color(0x05000000),
-              blurRadius: 23,
-              offset: Offset(0, 10),
-              spreadRadius: 0,
-            ),
-            BoxShadow(
-              color: Color(0x05000000),
-              blurRadius: 42,
-              offset: Offset(0, 42),
-              spreadRadius: 0,
-            ),
-            BoxShadow(
-              color: Color(0x02000000),
-              blurRadius: 56,
-              offset: Offset(0, 94),
-              spreadRadius: 0,
-            ),
-            BoxShadow(
-              color: Color(0x00000000),
-              blurRadius: 67,
-              offset: Offset(0, 167),
-              spreadRadius: 0,
-            ),
-            BoxShadow(
-              color: Color(0x00000000),
-              blurRadius: 73,
-              offset: Offset(0, 261),
-              spreadRadius: 0,
-            )
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: getMainContant(),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: getMainContant(),
+          ),
         ),
       ),
     ));
@@ -126,7 +134,13 @@ class _TaskWidgetState extends State<TaskWidget> {
                       ),
                       value: isBoxCheckd,
                       onChanged: (isChekd) {
-                        isBoxCheckd = isChekd!;
+                        setState(() {
+                          isBoxCheckd = isChekd!;
+                          widget.task.isDone = isBoxCheckd;
+                          isBoxCheckd == true ? _opacity = .5 : _opacity = 1;
+                          widget.task.opacity = _opacity;
+                          widget.task.save();
+                        });
                       },
                     ),
                   ),
