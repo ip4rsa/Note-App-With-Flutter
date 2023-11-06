@@ -28,12 +28,12 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+            topLeft: Radius.circular(23),
+            topRight: Radius.circular(23),
           ),
           child: BottomNavigationBar(
             elevation: 20,
-            backgroundColor: Color.fromARGB(255, 245, 245, 245),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             showSelectedLabels: false,
             showUnselectedLabels: false,
             iconSize: 109,

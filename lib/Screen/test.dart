@@ -13,20 +13,9 @@ class _testState extends State<test> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFAFAFA),
       body: Center(
-        child: Column(
-          children: [
-            TextField(
-              controller: _nameController,
-            ),
-            Text(_nameController.text),
-            TextButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                child: Text('submit'))
-          ],
-        ),
+        child: Text('data'),
       ),
     );
   }

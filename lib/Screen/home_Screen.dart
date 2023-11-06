@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app/Screen/add_task_screen.dart';
 import 'package:note_app/Screen/test.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/widget/appBar_widget.dart';
@@ -26,7 +25,7 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isShowItemList = false;
+    bool isShowItemList = true;
     return Scaffold(
       body: Scaffold(
         appBar: PreferredSize(
@@ -52,13 +51,14 @@ class _homeScreenState extends State<homeScreen> {
 
                 return true;
               },
-              child: isShowItemList == true
+              child: taskBox.isEmpty
                   ? test()
                   : ListView.builder(
                       physics: BouncingScrollPhysics(),
                       itemCount: taskBox.values.length,
                       itemBuilder: (context, index) {
                         var task = taskBox.values.toList()[index];
+
                         return Dismissible(
                           movementDuration: Duration(seconds: 1),
                           direction: DismissDirection.endToStart,
