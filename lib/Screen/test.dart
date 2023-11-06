@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/colors.dart';
 
 class test extends StatefulWidget {
   const test({super.key});
@@ -15,7 +16,18 @@ class _testState extends State<test> {
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
       body: Center(
-        child: Text('data'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/NotFoundTask.png', height: 230),
+            SizedBox(height: 10),
+            Text(
+              ':) شما درحال حاظر تسکی برای انجام ندارید',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 13, color: gray),
+            ),
+          ],
+        ),
       ),
     );
   }
