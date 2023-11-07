@@ -14,8 +14,8 @@ class _SettingScreenState extends State<SettingScreen> {
       backgroundColor: const Color(0xFFFAFAFA),
       body: Center(
         child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Text('به زودی...'),
+          textDirection: TextDirection.ltr,
+          child: Text('Development  </>  در حال تکمیل'),
         ),
       ),
     );

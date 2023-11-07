@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app/Screen/test.dart';
+import 'package:note_app/Screen/EmptyTask.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/widget/appBar_widget.dart';
 import 'package:note_app/widget/task_widget.dart';
@@ -19,13 +19,11 @@ final TextEditingController _nameController = TextEditingController();
 
 class _homeScreenState extends State<homeScreen> {
   bool isChecked = false;
-
   var taskBox = Hive.box<taskModel>('taskBox');
   bool isFabVisible = true;
 
   @override
   Widget build(BuildContext context) {
-    bool isShowItemList = true;
     return Scaffold(
       body: Scaffold(
         appBar: PreferredSize(
@@ -52,7 +50,7 @@ class _homeScreenState extends State<homeScreen> {
                 return true;
               },
               child: taskBox.isEmpty
-                  ? test()
+                  ? EmptyTask()
                   : ListView.builder(
                       physics: BouncingScrollPhysics(),
                       itemCount: taskBox.values.length,

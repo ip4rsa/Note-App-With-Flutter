@@ -30,7 +30,7 @@ class getAppBar extends StatelessWidget {
             ),
             child: Text(
               Jalali.now().formatMediumDate(),
-              overflow: TextOverflow.ellipsis,
+              overflow: TextOverflow.fade,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF18DAA3),
@@ -58,6 +58,7 @@ class getAppBar extends StatelessWidget {
                           fontSize: 16,
                           fontFamily: 'Shabnam',
                           fontWeight: FontWeight.w700,
+                          overflow: TextOverflow.fade,
                         ),
                       ),
                       TextSpan(
@@ -67,6 +68,7 @@ class getAppBar extends StatelessWidget {
                           fontSize: 16,
                           fontFamily: 'Shabnam',
                           fontWeight: FontWeight.w700,
+                          overflow: TextOverflow.fade,
                         ),
                       ),
                     ],
