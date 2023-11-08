@@ -52,8 +52,8 @@ class _editTaskScreenState extends State<editTaskScreen> {
           height: 1050,
           child: Column(
             children: [
-              Image.asset('assets/images/editTask.png', height: 200),
-              SizedBox(height: 10),
+              // Image.asset('assets/images/editTask.png', height: 200),
+              SizedBox(height: 60),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: Directionality(

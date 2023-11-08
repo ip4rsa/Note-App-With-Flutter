@@ -16,15 +16,7 @@ var taskBox = Hive.box<taskModel>('taskBox');
 final TextEditingController _nameController = TextEditingController();
 
 class _EmptyTaskState extends State<EmptyTask> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   Widget build(BuildContext context) {
-    double _opacity = 1;
-
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
       body: Center(

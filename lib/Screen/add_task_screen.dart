@@ -48,9 +48,8 @@ class _addTaskScreenState extends State<addTaskScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 20),
-              Image.asset('assets/images/addTaskk.png', height: 200),
-              SizedBox(height: 20),
+              // Image.asset('assets/images/addTaskk.png', height: 200),
+              SizedBox(height: 60),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: Directionality(
