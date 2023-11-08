@@ -32,8 +32,8 @@ class _MainScreenState extends State<MainScreen> {
           effects: [FadeEffect(duration: Duration(milliseconds: 400))],
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(23),
-              topRight: Radius.circular(23),
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
             ),
             child: BottomNavigationBar(
               elevation: 10,

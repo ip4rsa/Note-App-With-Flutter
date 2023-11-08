@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
 import 'package:note_app/data/task.dart';
@@ -48,10 +50,10 @@ class _addTaskScreenState extends State<addTaskScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Image.asset('assets/images/addTaskk.png', height: 200),
-              SizedBox(height: 60),
+              SizedBox(height: 40),
+              Image.asset('assets/images/addTaskk.png', height: 200),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextField(
@@ -63,16 +65,11 @@ class _addTaskScreenState extends State<addTaskScreen> {
                       labelStyle: TextStyle(
                           color: neghban1.hasFocus ? green : gray,
                           fontFamily: 'Shabnam'),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                        borderSide: BorderSide(width: 2, color: gray),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: gray),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        borderSide: BorderSide(width: 2, color: green),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: green),
                       ),
                     ),
                   ),
@@ -80,12 +77,12 @@ class _addTaskScreenState extends State<addTaskScreen> {
               ),
               SizedBox(height: 15),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextField(
                     controller: controllerTaskSubTitle,
-                    maxLines: 2,
+                    maxLines: 1,
                     focusNode: neghban2,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(17),
@@ -93,16 +90,11 @@ class _addTaskScreenState extends State<addTaskScreen> {
                       labelStyle: TextStyle(
                           color: neghban2.hasFocus ? green : gray,
                           fontFamily: 'Shabnam'),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(23),
-                        ),
-                        borderSide: BorderSide(width: 2, color: gray),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: gray),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(23)),
-                        borderSide: BorderSide(width: 2, color: green),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: green),
                       ),
                     ),
                   ),
@@ -113,7 +105,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: CustomHourPicker(
-                    elevation: 2,
+                    elevation: 1,
                     title: 'انتخاب زمان تسک',
                     titleStyle: TextStyle(color: green, fontSize: 17),
                     negativeButtonText: '',
@@ -154,47 +146,65 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   endIndent: 55,
                 ),
               ),
-              // SizedBox(height: 35),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: .7,
-                    minimumSize: Size(150, 50),
-                    backgroundColor: green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+
+              Animate(
+                onPlay: (controller) => controller.repeat(reverse: true),
+                effects: [
+                  ElevationEffect(
+                      duration: Duration(seconds: 2),
+                      begin: 10,
+                      end: 20,
+                      color: Color.fromARGB(77, 0, 0, 0),
+                      borderRadius: BorderRadius.circular(30))
+                ],
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 4,
+                      minimumSize: Size(150, 50),
+                      backgroundColor: green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    String taskTitle = controllerTaskTitle.text;
-                    String taskSubTitle = controllerTaskSubTitle.text;
-                    addTask(
-                      taskTitle,
-                      taskSubTitle,
-                    );
-                    toastification.show(
-                      context: context,
-                      type: ToastificationType.success,
-                      style: ToastificationStyle.flat,
-                      title: 'تسک جدید شما با موفقیت اضافه شد.',
-                      alignment: Alignment.topCenter,
-                      autoCloseDuration: const Duration(seconds: 3),
-                      borderRadius: BorderRadius.circular(12.0),
-                      boxShadow: highModeShadow,
-                      direction: TextDirection.rtl,
-                      dragToClose: true,
-                      showProgressBar: false,
-                      closeButtonShowType: CloseButtonShowType.onHover,
-                    );
-                  },
-                  child: Text(
-                    'اضافه کن',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    onPressed: () {
+                      String taskTitle = controllerTaskTitle.text;
+                      String taskSubTitle = controllerTaskSubTitle.text;
+                      addTask(
+                        taskTitle,
+                        taskSubTitle,
+                      );
+                      toastification.show(
+                        context: context,
+                        type: ToastificationType.success,
+                        style: ToastificationStyle.flat,
+                        title: 'تسک جدید شما با موفقیت اضافه شد.',
+                        alignment: Alignment.topCenter,
+                        autoCloseDuration: const Duration(seconds: 2),
+                        borderRadius: BorderRadius.circular(12.0),
+                        boxShadow: highModeShadow,
+                        direction: TextDirection.rtl,
+                        dragToClose: true,
+                        showProgressBar: false,
+                        closeButtonShowType: CloseButtonShowType.onHover,
+                      );
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'اضافه کن',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        SizedBox(width: 6),
+                        Icon(Icons.ads_click_outlined, color: Colors.white),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 90),
+              SizedBox(height: 110),
             ],
           ),
         ),
@@ -228,7 +238,7 @@ class _getTaskTypeItemsState extends State<getTaskTypeItems> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 210,
+      height: 180,
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -245,6 +255,7 @@ class _getTaskTypeItemsState extends State<getTaskTypeItems> {
                 });
               },
               child: Container(
+                width: 130,
                 decoration: BoxDecoration(
                   color: selectedTaskTypeItem == index
                       ? green
