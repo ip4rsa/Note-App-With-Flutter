@@ -66,20 +66,20 @@ class _addTaskScreenState extends State<addTaskScreen> {
                           fontFamily: 'Shabnam'),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(17),
+                          Radius.circular(20),
                         ),
                         borderSide: BorderSide(width: 2, color: gray),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(17)),
+                            const BorderRadius.all(Radius.circular(20)),
                         borderSide: BorderSide(width: 2, color: green),
                       ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: Directionality(
@@ -96,49 +96,52 @@ class _addTaskScreenState extends State<addTaskScreen> {
                           fontFamily: 'Shabnam'),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(17),
+                          Radius.circular(23),
                         ),
                         borderSide: BorderSide(width: 2, color: gray),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(17)),
+                            const BorderRadius.all(Radius.circular(23)),
                         borderSide: BorderSide(width: 2, color: green),
                       ),
                     ),
                   ),
                 ),
               ),
-              Directionality(
-                textDirection: TextDirection.rtl,
-                child: CustomHourPicker(
-                  elevation: 2,
-                  title: 'انتخاب زمان تسک',
-                  titleStyle: TextStyle(color: green, fontSize: 17),
-                  negativeButtonText: '',
-                  negativeButtonStyle:
-                      TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
-                  positiveButtonText: 'تایید زمان',
-                  positiveButtonStyle:
-                      TextStyle(color: green, fontWeight: FontWeight.bold),
-                  onPositivePressed: (context, time) {
-                    _time = time;
-                    toastification.show(
-                      context: context,
-                      type: ToastificationType.success,
-                      style: ToastificationStyle.flat,
-                      title: 'زمان تسک تنظیم شد.',
-                      alignment: Alignment.topCenter,
-                      autoCloseDuration: const Duration(seconds: 2),
-                      borderRadius: BorderRadius.circular(12.0),
-                      boxShadow: highModeShadow,
-                      direction: TextDirection.rtl,
-                      dragToClose: true,
-                      showProgressBar: false,
-                      closeButtonShowType: CloseButtonShowType.onHover,
-                    );
-                  },
-                  onNegativePressed: (context) {},
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: CustomHourPicker(
+                    elevation: 2,
+                    title: 'انتخاب زمان تسک',
+                    titleStyle: TextStyle(color: green, fontSize: 17),
+                    negativeButtonText: '',
+                    negativeButtonStyle: TextStyle(
+                        color: const Color.fromARGB(255, 184, 40, 30)),
+                    positiveButtonText: 'تایید زمان',
+                    positiveButtonStyle:
+                        TextStyle(color: green, fontWeight: FontWeight.bold),
+                    onPositivePressed: (context, time) {
+                      _time = time;
+                      toastification.show(
+                        context: context,
+                        type: ToastificationType.success,
+                        style: ToastificationStyle.flat,
+                        title: 'زمان تسک تنظیم شد.',
+                        alignment: Alignment.topCenter,
+                        autoCloseDuration: const Duration(seconds: 2),
+                        borderRadius: BorderRadius.circular(12.0),
+                        boxShadow: highModeShadow,
+                        direction: TextDirection.rtl,
+                        dragToClose: true,
+                        showProgressBar: false,
+                        closeButtonShowType: CloseButtonShowType.onHover,
+                      );
+                    },
+                    onNegativePressed: (context) {},
+                  ),
                 ),
               ),
               // Spacer(),
@@ -148,8 +151,8 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 child: Divider(
                   color: Color.fromARGB(68, 158, 158, 158),
                   height: 40,
-                  indent: 30,
-                  endIndent: 30,
+                  indent: 55,
+                  endIndent: 55,
                 ),
               ),
               // SizedBox(height: 35),
@@ -233,7 +236,9 @@ class _getTaskTypeItemsState extends State<getTaskTypeItems> {
         itemCount: taskDataType.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: taskDataType.first == taskDataType[index]
+                ? EdgeInsets.only(left: 55, right: 8)
+                : EdgeInsets.symmetric(horizontal: 8),
             child: InkWell(
               onTap: () {
                 setState(() {

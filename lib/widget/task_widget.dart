@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/Screen/edit_task_screen.dart';
 
@@ -37,60 +38,63 @@ class _TaskWidgetState extends State<TaskWidget> {
           widget.task.save();
         });
       },
-      child: AnimatedOpacity(
-        opacity: _opacity,
-        duration: Duration(milliseconds: 300),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          width: 380,
-          height: 132,
-          decoration: ShapeDecoration(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+      child: Animate(
+        effects: [ShimmerEffect(duration: Duration(milliseconds: 400))],
+        child: AnimatedOpacity(
+          opacity: _opacity,
+          duration: Duration(milliseconds: 300),
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            width: 380,
+            height: 132,
+            decoration: ShapeDecoration(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              shadows: const [
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 0,
+                  offset: Offset(0, 0),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 23,
+                  offset: Offset(0, 10),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x05000000),
+                  blurRadius: 42,
+                  offset: Offset(0, 42),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x02000000),
+                  blurRadius: 56,
+                  offset: Offset(0, 94),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x00000000),
+                  blurRadius: 67,
+                  offset: Offset(0, 167),
+                  spreadRadius: 0,
+                ),
+                BoxShadow(
+                  color: Color(0x00000000),
+                  blurRadius: 73,
+                  offset: Offset(0, 261),
+                  spreadRadius: 0,
+                )
+              ],
             ),
-            shadows: const [
-              BoxShadow(
-                color: Color(0x05000000),
-                blurRadius: 0,
-                offset: Offset(0, 0),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x05000000),
-                blurRadius: 23,
-                offset: Offset(0, 10),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x05000000),
-                blurRadius: 42,
-                offset: Offset(0, 42),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x02000000),
-                blurRadius: 56,
-                offset: Offset(0, 94),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x00000000),
-                blurRadius: 67,
-                offset: Offset(0, 167),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x00000000),
-                blurRadius: 73,
-                offset: Offset(0, 261),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: getMainContant(),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: getMainContant(),
+            ),
           ),
         ),
       ),

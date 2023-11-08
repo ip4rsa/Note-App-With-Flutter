@@ -21,6 +21,7 @@ dependencies:
   time_pickerr: ^1.0.6
   toastification: 1.0.2
   persian_datetime_picker: ^2.6.0
+  flutter_animate: ^4.2.0+1
   # tutorial_coach_mark: ^1.2.11
   # adaptive_theme: ^3.4.1
   # persian: ^1.2.0
