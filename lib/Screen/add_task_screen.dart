@@ -102,37 +102,34 @@ class _addTaskScreenState extends State<addTaskScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: CustomHourPicker(
-                    elevation: 1,
-                    title: 'انتخاب زمان تسک',
-                    titleStyle: TextStyle(color: green, fontSize: 17),
-                    negativeButtonText: '',
-                    negativeButtonStyle: TextStyle(
-                        color: const Color.fromARGB(255, 184, 40, 30)),
-                    positiveButtonText: 'تایید زمان',
-                    positiveButtonStyle:
-                        TextStyle(color: green, fontWeight: FontWeight.bold),
-                    onPositivePressed: (context, time) {
-                      _time = time;
-                      toastification.show(
-                        context: context,
-                        type: ToastificationType.success,
-                        style: ToastificationStyle.flat,
-                        title: 'زمان تسک تنظیم شد.',
-                        alignment: Alignment.topCenter,
-                        autoCloseDuration: const Duration(seconds: 2),
-                        borderRadius: BorderRadius.circular(12.0),
-                        boxShadow: highModeShadow,
-                        direction: TextDirection.rtl,
-                        dragToClose: true,
-                        showProgressBar: false,
-                        closeButtonShowType: CloseButtonShowType.onHover,
-                      );
-                    },
-                    onNegativePressed: (context) {},
-                  ),
+                child: CustomHourPicker(
+                  elevation: 1,
+                  title: 'انتخاب زمان تسک',
+                  titleStyle: TextStyle(color: green, fontSize: 17),
+                  negativeButtonText: '',
+                  negativeButtonStyle:
+                      TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
+                  positiveButtonText: 'تایید زمان',
+                  positiveButtonStyle:
+                      TextStyle(color: green, fontWeight: FontWeight.bold),
+                  onPositivePressed: (context, time) {
+                    _time = time;
+                    toastification.show(
+                      context: context,
+                      type: ToastificationType.success,
+                      style: ToastificationStyle.flat,
+                      title: 'زمان تسک تنظیم شد.',
+                      alignment: Alignment.topCenter,
+                      autoCloseDuration: const Duration(seconds: 2),
+                      borderRadius: BorderRadius.circular(12.0),
+                      boxShadow: highModeShadow,
+                      direction: TextDirection.rtl,
+                      dragToClose: true,
+                      showProgressBar: false,
+                      closeButtonShowType: CloseButtonShowType.onHover,
+                    );
+                  },
+                  onNegativePressed: (context) {},
                 ),
               ),
               // Spacer(),
