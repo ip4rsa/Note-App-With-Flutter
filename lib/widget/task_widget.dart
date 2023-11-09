@@ -185,15 +185,18 @@ class _TaskWidgetState extends State<TaskWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                '${widget.task.time.hour}:${getMintusTimeZero(widget.task.time)}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13,
-                  fontFamily: 'Shabnam',
-                  // fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Text(
+                  '${widget.task.time.hour}:${getMintusTimeZero(widget.task.time)}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    fontFamily: 'Shabnam',
+                    // fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               Image.asset('assets/images/Time.png'),
