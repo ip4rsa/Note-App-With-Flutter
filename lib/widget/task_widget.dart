@@ -153,11 +153,13 @@ class _TaskWidgetState extends State<TaskWidget> {
                   ),
                   Text(
                     widget.task.title,
-                    style: TextStyle(fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        overflow: TextOverflow.fade),
                   ),
                 ],
               ),
-              Text(widget.task.subTitle, overflow: TextOverflow.ellipsis),
+              Text(widget.task.subTitle, overflow: TextOverflow.fade),
               Spacer(),
               getTimeAndEditBTN()
             ],
