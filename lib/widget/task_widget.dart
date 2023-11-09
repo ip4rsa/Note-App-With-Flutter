@@ -13,6 +13,7 @@ class TaskWidget extends StatefulWidget {
 class _TaskWidgetState extends State<TaskWidget> {
   bool isBoxCheckd = false;
   double _opacity = 1;
+  bool _shimmerEffect = false;
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     return Center(
         child: GestureDetector(
       onTap: () {
+        _shimmerEffect = true;
         setState(() {
           isBoxCheckd = !isBoxCheckd;
           widget.task.isDone = isBoxCheckd;
@@ -39,6 +41,7 @@ class _TaskWidgetState extends State<TaskWidget> {
         });
       },
       child: Animate(
+        autoPlay: false,
         effects: [ShimmerEffect(duration: Duration(milliseconds: 400))],
         child: AnimatedOpacity(
           opacity: _opacity,

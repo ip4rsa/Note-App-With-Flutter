@@ -3,17 +3,45 @@ import 'package:note_app/data/task_taype_model.dart';
 
 List<TaskType> taskDataType = [
   TaskType(
-    title: 'تفریح',
-    image: 'assets/images/social_frends.png',
-    taskTypeEnum: taskTypeEnum.hubby,
-  ),
-  TaskType(
     title: 'کار',
-    image: 'assets/images/working.png',
+    image: 'assets/images/wirking.png',
     taskTypeEnum: taskTypeEnum.working,
   ),
   TaskType(
-      title: 'تمرکز',
-      image: 'assets/images/meditate.png',
+      title: 'استراحت',
+      image: 'assets/images/cheel.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+    title: 'تفریح',
+    image: 'assets/images/hubby.png',
+    taskTypeEnum: taskTypeEnum.hubby,
+  ),
+  TaskType(
+      title: 'مطالعه',
+      image: 'assets/images/book.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+      title: 'خرید',
+      image: 'assets/images/order.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+      title: 'خواب',
+      image: 'assets/images/Sleep.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+      title: 'درس',
+      image: 'assets/images/School.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+      title: 'تمرین',
+      image: 'assets/images/ronio-vector-svg-1024-Playing Music-min.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+      title: 'تمیزکاری',
+      image: 'assets/images/School.png',
+      taskTypeEnum: taskTypeEnum.fouce),
+  TaskType(
+      title: 'نوشیدن آب',
+      image: 'assets/images/water.png',
       taskTypeEnum: taskTypeEnum.fouce),
 ];

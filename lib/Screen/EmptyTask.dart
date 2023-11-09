@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive/hive.dart';
-import 'package:note_app/constants/colors.dart';
 import 'package:note_app/data/task.dart';
-import 'package:note_app/data/task_type_data.dart';
 
 class EmptyTask extends StatefulWidget {
   const EmptyTask({super.key});

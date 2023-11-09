@@ -61,7 +61,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     focusNode: neghban1,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(17),
-                      labelText: ' عنوان تسک جدید ',
+                      labelText: ' عنوان تسک ',
                       labelStyle: TextStyle(
                           color: neghban1.hasFocus ? green : gray,
                           fontFamily: 'Shabnam'),
@@ -86,7 +86,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     focusNode: neghban2,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(17),
-                      labelText: ' توضیحات تسک جدید ',
+                      labelText: ' توضیحات تسک ',
                       labelStyle: TextStyle(
                           color: neghban2.hasFocus ? green : gray,
                           fontFamily: 'Shabnam'),
@@ -273,7 +273,7 @@ class _getTaskTypeItemsState extends State<getTaskTypeItems> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(taskDataType[index].image, scale: 15),
+                      child: Image.asset(taskDataType[index].image, scale: 1),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),

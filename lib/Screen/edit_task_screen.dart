@@ -49,11 +49,11 @@ class _editTaskScreenState extends State<editTaskScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: 1050,
+          height: 930,
           child: Column(
             children: [
               // Image.asset('assets/images/editTask.png', height: 200),
-              SizedBox(height: 60),
+              SizedBox(height: 65),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: Directionality(
@@ -67,16 +67,11 @@ class _editTaskScreenState extends State<editTaskScreen> {
                       labelStyle: TextStyle(
                           color: neghban1.hasFocus ? green : gray,
                           fontFamily: 'Shabnam'),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(17),
-                        ),
-                        borderSide: BorderSide(width: 2, color: gray),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: gray),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(17)),
-                        borderSide: BorderSide(width: 2, color: green),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: green),
                       ),
                     ),
                   ),
@@ -89,24 +84,19 @@ class _editTaskScreenState extends State<editTaskScreen> {
                   textDirection: TextDirection.rtl,
                   child: TextField(
                     controller: controllerTaskSubTitle,
-                    maxLines: 2,
+                    maxLines: 1,
                     focusNode: neghban2,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(17),
                       labelText: ' توضیحات جدید ',
                       labelStyle: TextStyle(
-                          color: neghban2.hasFocus ? green : gray,
+                          color: neghban1.hasFocus ? green : gray,
                           fontFamily: 'Shabnam'),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(17),
-                        ),
-                        borderSide: BorderSide(width: 2, color: gray),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: gray),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(17)),
-                        borderSide: BorderSide(width: 2, color: green),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: green),
                       ),
                     ),
                   ),
@@ -147,14 +137,16 @@ class _editTaskScreenState extends State<editTaskScreen> {
                 ),
               ),
               Container(
-                height: 215,
+                height: 180,
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: taskDataType.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: taskDataType.first == taskDataType[index]
+                          ? EdgeInsets.only(left: 55, right: 8)
+                          : EdgeInsets.symmetric(horizontal: 8),
                       child: InkWell(
                         onTap: () {
                           setState(() {
@@ -180,7 +172,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.asset(taskDataType[index].image,
-                                    scale: 15),
+                                    scale: 9),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),

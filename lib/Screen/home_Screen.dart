@@ -21,7 +21,6 @@ class _homeScreenState extends State<homeScreen> {
   bool isChecked = false;
   var taskBox = Hive.box<taskModel>('taskBox');
   bool isFabVisible = true;
-  double _opacity = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +60,7 @@ class _homeScreenState extends State<homeScreen> {
 
                         return Animate(
                           effects: [
-                            FadeEffect(duration: Duration(milliseconds: 1700))
+                            FadeEffect(duration: Duration(milliseconds: 1050))
                           ],
                           child: Dismissible(
                             movementDuration: Duration(seconds: 1),
