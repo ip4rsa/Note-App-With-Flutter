@@ -49,13 +49,12 @@ class _editTaskScreenState extends State<editTaskScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: 930,
+          height: 1200,
           child: Column(
             children: [
-              // Image.asset('assets/images/editTask.png', height: 200),
-              SizedBox(height: 65),
+              Image.asset('assets/images/editTask.png', height: 200),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextField(
@@ -79,7 +78,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
               ),
               SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: TextField(
@@ -102,11 +101,52 @@ class _editTaskScreenState extends State<editTaskScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 40),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 13,
+                        height: 2,
+                        color: green,
+                      ),
+                      SizedBox(width: 6),
+                      Text('انتخاب دسته بندی :', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              getTaskTipeitesm(),
+              SizedBox(height: 50),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 13,
+                        height: 2,
+                        color: green,
+                      ),
+                      SizedBox(width: 6),
+                      Text('انتخاب زمان جدید تسک :',
+                          textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: CustomHourPicker(
                   elevation: 2,
-                  title: 'انتخاب زمان جدید تسک',
+                  title: '',
                   titleStyle: TextStyle(color: green, fontSize: 17),
                   negativeButtonText: '',
                   negativeButtonStyle:
@@ -133,61 +173,6 @@ class _editTaskScreenState extends State<editTaskScreen> {
                   },
                   onNegativePressed: (context) {
                     print('onNegative');
-                  },
-                ),
-              ),
-              Container(
-                height: 180,
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: taskDataType.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: taskDataType.first == taskDataType[index]
-                          ? EdgeInsets.only(left: 55, right: 8)
-                          : EdgeInsets.symmetric(horizontal: 8),
-                      child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedTaskTypeItem = index;
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: selectedTaskTypeItem == index
-                                ? green
-                                : Colors.transparent,
-                            border: Border.all(
-                                width: 2.3,
-                                color: selectedTaskTypeItem == index
-                                    ? green
-                                    : Color.fromARGB(78, 140, 140, 140)),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(taskDataType[index].image,
-                                    scale: 9),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(taskDataType[index].title,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: selectedTaskTypeItem == index
-                                            ? Colors.white
-                                            : Colors.black)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
                   },
                 ),
               ),
@@ -250,6 +235,63 @@ class _editTaskScreenState extends State<editTaskScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container getTaskTipeitesm() {
+    return Container(
+      height: 180,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: taskDataType.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: taskDataType.first == taskDataType[index]
+                ? EdgeInsets.only(left: 55, right: 8)
+                : EdgeInsets.symmetric(horizontal: 8),
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  selectedTaskTypeItem = index;
+                });
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: selectedTaskTypeItem == index
+                      ? green
+                      : Colors.transparent,
+                  border: Border.all(
+                      width: 2.3,
+                      color: selectedTaskTypeItem == index
+                          ? green
+                          : Color.fromARGB(78, 140, 140, 140)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(taskDataType[index].image, scale: 9),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(taskDataType[index].title,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: selectedTaskTypeItem == index
+                                  ? Colors.white
+                                  : Colors.black)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

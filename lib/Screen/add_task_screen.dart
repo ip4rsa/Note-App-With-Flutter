@@ -100,11 +100,51 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 40),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 13,
+                        height: 2,
+                        color: green,
+                      ),
+                      SizedBox(width: 6),
+                      Text('انتخاب دسته بندی :', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              getTaskTypeItems(),
+              SizedBox(height: 50),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 13,
+                        height: 2,
+                        color: green,
+                      ),
+                      SizedBox(width: 6),
+                      Text('انتخاب زمان تسک :', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: CustomHourPicker(
                   elevation: 1,
-                  title: 'انتخاب زمان تسک',
+                  title: '',
                   titleStyle: TextStyle(color: green, fontSize: 17),
                   negativeButtonText: '',
                   negativeButtonStyle:
@@ -133,7 +173,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 ),
               ),
               // Spacer(),
-              getTaskTypeItems(),
+              // getTaskTypeItems(),
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Divider(
