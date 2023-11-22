@@ -1,8 +1,11 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/Screen/edit_task_screen.dart';
 
+// ignore: must_be_immutable
 class TaskWidget extends StatefulWidget {
   TaskWidget({super.key, required this.task});
   taskModel task;

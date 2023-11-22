@@ -1,10 +1,14 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:note_app/Screen/setting_Screen.dart';
+import 'package:note_app/data/task.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class getAppBar extends StatelessWidget {
-  getAppBar({
-    super.key,
-  });
+  getAppBar({super.key, this.task, TextEditingController, this.receivedValue});
+  taskModel? task;
+  final String? receivedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class getAppBar extends StatelessWidget {
         ),
         actions: [
           Image.asset('assets/images/hand.png', scale: 4),
-          SizedBox(width: 4),
+          SizedBox(width: 6),
           Padding(
             padding: const EdgeInsets.only(right: 24),
             child: Row(
@@ -52,7 +56,7 @@ class getAppBar extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'سلام ، ',
+                        text: 'سلام، ',
                         style: TextStyle(
                           color: Color(0xFF1C1F2E),
                           fontSize: 16,
@@ -62,7 +66,7 @@ class getAppBar extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: ('کاربر گرامی'),
+                        text: (userNameController.text),
                         style: TextStyle(
                           color: Color(0xFF18DAA3),
                           fontSize: 16,

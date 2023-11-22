@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
@@ -149,7 +151,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
                 negativeButtonText: '',
                 negativeButtonStyle:
                     TextStyle(color: const Color.fromARGB(255, 184, 40, 30)),
-                positiveButtonText: 'تایید زمان جدید',
+                positiveButtonText: 'تایید مجدد زمان',
                 positiveButtonStyle:
                     TextStyle(color: green, fontWeight: FontWeight.bold),
                 onPositivePressed: (context, time) {

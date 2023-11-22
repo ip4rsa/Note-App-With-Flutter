@@ -61,12 +61,12 @@ class _MainScreenState extends State<MainScreen> {
                       Image.asset('assets/images/icon_add.png', color: green),
                   label: '',
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Image.asset('assets/images/Settings.png', color: gray),
-                //   activeIcon:
-                //       Image.asset('assets/images/Settings.png', color: green),
-                //   label: '',
-                // ),
+                BottomNavigationBarItem(
+                  icon: Image.asset('assets/images/Settings.png', color: gray),
+                  activeIcon:
+                      Image.asset('assets/images/Settings.png', color: green),
+                  label: '',
+                ),
               ],
             ),
           ),
