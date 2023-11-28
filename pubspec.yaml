@@ -4,7 +4,7 @@ description: A new Flutter project.
 publish_to: 'none'
 
 
-version: 1.0.0+1
+version: 1.5.0
 
 environment:
   sdk: '>=3.1.3 <4.0.0'
@@ -17,14 +17,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   hive_flutter: ^1.1.0
   hive: ^2.2.3
-  msh_checkbox: ^2.0.1
   time_pickerr: ^1.0.6
   toastification: 1.0.2
   persian_datetime_picker: ^2.6.0
   flutter_animate: ^4.2.0+1
-  # tutorial_coach_mark: ^1.2.11
-  # adaptive_theme: ^3.4.1
-  # persian: ^1.2.0
+  adaptive_theme: ^3.4.1
+  url_launcher: ^6.2.1
+  flutter_onboarding_slider: ^1.0.11
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +45,6 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
-    - assets/images/4e162f6465abb78d1eaa5168401650a0.gif
 
  
   fonts:

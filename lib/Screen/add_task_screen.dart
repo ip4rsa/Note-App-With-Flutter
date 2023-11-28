@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
+import 'package:note_app/constants/notifShow.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/data/task_type_data.dart';
 import 'package:time_pickerr/time_pickerr.dart';
@@ -12,7 +12,7 @@ class addTaskScreen extends StatefulWidget {
   addTaskScreen({
     super.key,
   });
-  // taskModel taskModels;
+
   @override
   State<addTaskScreen> createState() => _addTaskScreenState();
 }
@@ -47,13 +47,14 @@ class _addTaskScreenState extends State<addTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAFAFA),
+      // backgroundColor: const Color(0xFFFAFAFA),
       body: ClipRRect(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 40),
-              Image.asset('assets/images/addTaskk.png', height: 200),
+              SizedBox(height: 80),
+              // Image.asset('assets/images/addTaskk.png', height: 200),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Directionality(
@@ -62,7 +63,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     controller: controllerTaskTitle,
                     focusNode: neghban1,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(17),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 20),
                       labelText: ' عنوان تسک ',
                       labelStyle: TextStyle(
                           color: neghban1.hasFocus ? green : gray,
@@ -87,7 +88,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     maxLines: 1,
                     focusNode: neghban2,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(17),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 20),
                       labelText: ' توضیحات تسک ',
                       labelStyle: TextStyle(
                           color: neghban2.hasFocus ? green : gray,
@@ -145,7 +146,6 @@ class _addTaskScreenState extends State<addTaskScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: CustomHourPicker(
-                  elevation: 1,
                   title: '',
                   titleStyle: TextStyle(color: green, fontSize: 17),
                   negativeButtonText: '',
@@ -156,20 +156,8 @@ class _addTaskScreenState extends State<addTaskScreen> {
                       TextStyle(color: green, fontWeight: FontWeight.bold),
                   onPositivePressed: (context, time) {
                     _time = time;
-                    toastification.show(
-                      context: context,
-                      type: ToastificationType.success,
-                      style: ToastificationStyle.flat,
-                      title: 'زمان تسک تنظیم شد.',
-                      alignment: Alignment.topCenter,
-                      autoCloseDuration: const Duration(seconds: 2),
-                      borderRadius: BorderRadius.circular(12.0),
-                      boxShadow: highModeShadow,
-                      direction: TextDirection.rtl,
-                      dragToClose: true,
-                      showProgressBar: false,
-                      closeButtonShowType: CloseButtonShowType.onHover,
-                    );
+                    NotificationShow(context, 'زمان تسک تنظیم شد.',
+                        ToastificationType.success);
                   },
                   onNegativePressed: (context) {},
                 ),
@@ -190,18 +178,18 @@ class _addTaskScreenState extends State<addTaskScreen> {
                 onPlay: (controller) => controller.repeat(reverse: true),
                 effects: [
                   ElevationEffect(
-                      duration: Duration(seconds: 2),
-                      begin: 10,
-                      end: 20,
-                      color: Color.fromARGB(77, 0, 0, 0),
+                      duration: Duration(seconds: 1),
+                      begin: 8,
+                      end: 23,
+                      color: Color.fromARGB(16, 24, 218, 163),
                       borderRadius: BorderRadius.circular(30))
                 ],
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      elevation: 4,
-                      minimumSize: Size(150, 50),
+                      elevation: 0,
+                      minimumSize: Size(250, 50),
                       backgroundColor: green,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -210,24 +198,26 @@ class _addTaskScreenState extends State<addTaskScreen> {
                     onPressed: () {
                       String taskTitle = controllerTaskTitle.text;
                       String taskSubTitle = controllerTaskSubTitle.text;
-                      addTask(
-                        taskTitle,
-                        taskSubTitle,
-                      );
-                      toastification.show(
-                        context: context,
-                        type: ToastificationType.success,
-                        style: ToastificationStyle.flat,
-                        title: 'تسک جدید شما با موفقیت اضافه شد.',
-                        alignment: Alignment.topCenter,
-                        autoCloseDuration: const Duration(seconds: 2),
-                        borderRadius: BorderRadius.circular(12.0),
-                        boxShadow: highModeShadow,
-                        direction: TextDirection.rtl,
-                        dragToClose: true,
-                        showProgressBar: false,
-                        closeButtonShowType: CloseButtonShowType.onHover,
-                      );
+                      taskTitle.isEmpty || taskSubTitle.isEmpty || _time == null
+                          ? NotificationShow(
+                              context,
+                              'لطفا مقدار های خواسته شده رو کامل کن',
+                              ToastificationType.error)
+                          : addTask(
+                              taskTitle,
+                              taskSubTitle,
+                            );
+
+                      taskTitle.isEmpty || taskSubTitle.isEmpty || _time == null
+                          ? NotificationShow(
+                              context,
+                              'لطفا مقدار های خواسته شده رو کامل کن',
+                              ToastificationType.error)
+                          : NotificationShow(
+                              context,
+                              'تسک جدید شما با موفقیت اضافه شد.',
+                              ToastificationType.success,
+                            );
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -236,8 +226,6 @@ class _addTaskScreenState extends State<addTaskScreen> {
                           'اضافه کن',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
-                        SizedBox(width: 6),
-                        Icon(Icons.ads_click_outlined, color: Colors.white),
                       ],
                     ),
                   ),
@@ -316,12 +304,15 @@ class _getTaskTypeItemsState extends State<getTaskTypeItems> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(taskDataType[index].title,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: selectedTaskTypeItem == index
-                                  ? Colors.white
-                                  : Colors.black)),
+                      child: Text(
+                        taskDataType[index].title,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: selectedTaskTypeItem == index
+                              ? Color.fromARGB(255, 242, 242, 242)
+                              : Color.fromARGB(255, 172, 172, 172),
+                        ),
+                      ),
                     ),
                   ],
                 ),

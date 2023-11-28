@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_app/constants/colors.dart';
+import 'package:note_app/constants/notifShow.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/data/task_type_data.dart';
 import 'package:time_pickerr/time_pickerr.dart';
@@ -49,12 +50,15 @@ class _editTaskScreenState extends State<editTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+      ),
       body: SingleChildScrollView(
         child: Container(
-          height: 1200,
+          height: 980,
           child: Column(
             children: [
-              Image.asset('assets/images/editTask.png', height: 200),
+              // Image.asset('assets/images/editTask.png', height: 200),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Directionality(
@@ -63,7 +67,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
                     controller: controllerTaskTitle,
                     focusNode: neghban1,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(17),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 20),
                       labelText: ' عنوان جدید ',
                       labelStyle: TextStyle(
                           color: neghban1.hasFocus ? green : gray,
@@ -88,7 +92,7 @@ class _editTaskScreenState extends State<editTaskScreen> {
                     maxLines: 1,
                     focusNode: neghban2,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(17),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 20),
                       labelText: ' توضیحات جدید ',
                       labelStyle: TextStyle(
                           color: neghban1.hasFocus ? green : gray,
@@ -156,20 +160,8 @@ class _editTaskScreenState extends State<editTaskScreen> {
                     TextStyle(color: green, fontWeight: FontWeight.bold),
                 onPositivePressed: (context, time) {
                   _time = time;
-                  toastification.show(
-                    context: context,
-                    type: ToastificationType.success,
-                    style: ToastificationStyle.flat,
-                    title: 'زمان جدید تسک تنظیم شد.',
-                    alignment: Alignment.topCenter,
-                    autoCloseDuration: const Duration(seconds: 2),
-                    borderRadius: BorderRadius.circular(12.0),
-                    boxShadow: highModeShadow,
-                    direction: TextDirection.rtl,
-                    dragToClose: true,
-                    showProgressBar: false,
-                    closeButtonShowType: CloseButtonShowType.onHover,
-                  );
+                  NotificationShow(context, 'زمان جدید تسک تنظیم شد.',
+                      ToastificationType.success);
                 },
                 onNegativePressed: (context) {
                   print('onNegative');
@@ -199,8 +191,11 @@ class _editTaskScreenState extends State<editTaskScreen> {
                       onPressed: () {
                         String taskTitle = controllerTaskTitle!.text;
                         String taskSubTitle = controllerTaskSubTitle!.text;
+                        _time == null
+                            ? NotificationShow(context, 'لطفا زمان رو تایید کن',
+                                ToastificationType.error)
+                            : Navigator.pop(context);
                         editTAsk(taskTitle, taskSubTitle);
-                        Navigator.pop(context);
                       },
                       child: Text(
                         'ویرایش کن',
@@ -278,12 +273,15 @@ class _editTaskScreenState extends State<editTaskScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(taskDataType[index].title,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: selectedTaskTypeItem == index
-                                  ? Colors.white
-                                  : Colors.black)),
+                      child: Text(
+                        taskDataType[index].title,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: selectedTaskTypeItem == index
+                              ? Color.fromARGB(255, 242, 242, 242)
+                              : Color.fromARGB(255, 172, 172, 172),
+                        ),
+                      ),
                     ),
                   ],
                 ),

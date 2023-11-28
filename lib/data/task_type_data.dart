@@ -43,7 +43,7 @@ List<TaskType> taskDataType = [
       taskTypeEnum: taskTypeEnum.fouce),
   TaskType(
       title: 'تمیزکاری',
-      image: 'assets/images/School.png',
+      image: 'assets/images/CLR.png',
       taskTypeEnum: taskTypeEnum.fouce),
   TaskType(
       title: 'نوشیدن آب',

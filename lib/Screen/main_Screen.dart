@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             child: BottomNavigationBar(
               elevation: 10,
-              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              // backgroundColor: Color.fromARGB(255, 255, 255, 255),
               showSelectedLabels: false,
               showUnselectedLabels: false,
               iconSize: 109,

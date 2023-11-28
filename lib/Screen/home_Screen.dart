@@ -24,35 +24,36 @@ class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size(double.infinity, 60),
-          child: Animate(
-              effects: [FadeEffect(duration: Duration(milliseconds: 400))],
-              child: getAppBar()),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: Animate(
+          effects: [FadeEffect(duration: Duration(milliseconds: 400))],
+          child: getAppBar(),
         ),
-        backgroundColor: const Color(0xFFFAFAFA),
-        body: ValueListenableBuilder(
-          valueListenable: taskBox.listenable(),
-          builder: (context, value, child) {
-            return NotificationListener<UserScrollNotification>(
-              onNotification: (notification) {
-                setState(
-                  () {
-                    if (notification.direction == ScrollDirection.forward) {
-                      isFabVisible = true;
-                    }
-                    if (notification.direction == ScrollDirection.reverse) {
-                      isFabVisible = false;
-                    }
-                  },
-                );
+      ),
+      body: ValueListenableBuilder(
+        valueListenable: taskBox.listenable(),
+        builder: (context, value, child) {
+          return NotificationListener<UserScrollNotification>(
+            onNotification: (notification) {
+              setState(
+                () {
+                  if (notification.direction == ScrollDirection.forward) {
+                    isFabVisible = true;
+                  }
+                  if (notification.direction == ScrollDirection.reverse) {
+                    isFabVisible = false;
+                  }
+                },
+              );
 
-                return true;
-              },
-              child: taskBox.isEmpty
-                  ? EmptyTask()
-                  : ListView.builder(
+              return true;
+            },
+            child: taskBox.isEmpty
+                ? EmptyTask()
+                : Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: ListView.builder(
                       physics: BouncingScrollPhysics(),
                       itemCount: taskBox.values.length,
                       itemBuilder: (context, index) {
@@ -67,6 +68,7 @@ class _homeScreenState extends State<homeScreen> {
                             direction: DismissDirection.endToStart,
                             key: UniqueKey(),
                             onDismissed: (direction) {
+                              setState(() {});
                               task.delete();
                             },
                             child: TaskWidget(task: task),
@@ -74,9 +76,9 @@ class _homeScreenState extends State<homeScreen> {
                         );
                       },
                     ),
-            );
-          },
-        ),
+                  ),
+          );
+        },
       ),
     );
   }

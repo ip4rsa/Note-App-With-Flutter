@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:note_app/data/task.dart';
@@ -54,7 +55,9 @@ class _TaskWidgetState extends State<TaskWidget> {
             width: 380,
             height: 132,
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: AdaptiveTheme.of(context).isDefault
+                  ? Colors.white
+                  : Colors.black,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -118,21 +121,6 @@ class _TaskWidgetState extends State<TaskWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // MSHCheckbox(
-                  //   size: 28,
-                  //   value: isDone,
-                  //   colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-                  //     checkedColor: Color.fromARGB(255, 17, 171, 128),
-                  //   ),
-                  //   style: MSHCheckboxStyle.fillScaleCheck,
-                  //   onChanged: (selected) {
-                  //     setState(
-                  //       () {
-                  //         isDone = selected;
-                  //       },
-                  //     );
-                  //   },
-                  // ),
                   Transform.scale(
                     scale: 1.26,
                     child: Checkbox(
@@ -213,14 +201,16 @@ class _TaskWidgetState extends State<TaskWidget> {
           onTap: () {
             Navigator.push(
               context,
-              DialogRoute(
-                context: context,
-                builder: (context) => editTaskScreen(task: widget.task),
+              MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (context) => Animate(effects: [
+                  MoveEffect(duration: Duration(milliseconds: 700))
+                ], child: editTaskScreen(task: widget.task)),
               ),
             );
           },
           child: Container(
-            width: 87,
+            width: 85,
             height: 28,
             decoration: const BoxDecoration(
               color: Color(0xFFE2F6F1),
@@ -232,11 +222,13 @@ class _TaskWidgetState extends State<TaskWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text(
+                Text(
                   'ویرایش',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xFF18DAA3),
+                    color: AdaptiveTheme.of(context).isDefault
+                        ? Color(0xFF18DAA3)
+                        : Color.fromARGB(255, 20, 137, 104),
                     fontSize: 13,
                     fontFamily: 'Shabnam',
                   ),
