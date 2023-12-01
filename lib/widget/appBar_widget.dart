@@ -7,9 +7,8 @@ import 'package:note_app/data/task.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class getAppBar extends StatefulWidget {
-  getAppBar({super.key, this.task, TextEditingController, this.receivedValue});
+  getAppBar({super.key, this.task, TextEditingController});
   taskModel? task;
-  final String? receivedValue;
 
   @override
   State<getAppBar> createState() => _getAppBarState();
@@ -25,32 +24,37 @@ class _getAppBarState extends State<getAppBar> {
       ),
       child: AppBar(
         surfaceTintColor: const Color(0xFFFAFAFA),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: Container(
-            alignment: Alignment.center,
-            width: 85,
-            height: 31,
-            decoration: ShapeDecoration(
-              color: Color(0xFFE2F6F1),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(13),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 5, top: 6),
+              child: Container(
+                alignment: Alignment.center,
+                width: 85,
+                height: 31,
+                decoration: ShapeDecoration(
+                  color: Color(0xFFE2F6F1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(13),
+                  ),
+                ),
+                child: Text(
+                  Jalali.now().formatMediumDate(),
+                  overflow: TextOverflow.fade,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: AdaptiveTheme.of(context).isDefault
+                        ? Color(0xFF18DAA3)
+                        : Color.fromARGB(255, 19, 166, 124),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  textDirection: TextDirection.rtl,
+                ),
               ),
             ),
-            child: Text(
-              Jalali.now().formatMediumDate(),
-              overflow: TextOverflow.fade,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: AdaptiveTheme.of(context).isDefault
-                    ? Color(0xFF18DAA3)
-                    : Color.fromARGB(255, 19, 166, 124),
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-              textDirection: TextDirection.rtl,
-            ),
-          ),
+          ],
         ),
         actions: [
           Column(
@@ -67,7 +71,7 @@ class _getAppBarState extends State<getAppBar> {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: 'سلام ، ',
+                            text: 'سلام، ',
                             style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Shabnam',

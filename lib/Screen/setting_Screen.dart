@@ -27,13 +27,16 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 60),
-          getSettingSection1(),
-          SizedBox(height: 20),
-          getSettingSection2(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 60),
+            getSettingSection1(),
+            SizedBox(height: 20),
+            getSettingSection2(),
+            SizedBox(height: 110),
+          ],
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ List<TaskType> taskDataType = [
     taskTypeEnum: taskTypeEnum.hubby,
   ),
   TaskType(
-    title: 'وزش',
+    title: 'ورزش',
     image: 'assets/images/gym.png',
     taskTypeEnum: taskTypeEnum.hubby,
   ),

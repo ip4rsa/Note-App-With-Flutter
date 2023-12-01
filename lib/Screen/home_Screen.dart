@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/Screen/EmptyTask.dart';
@@ -35,24 +34,10 @@ class _homeScreenState extends State<homeScreen> {
         valueListenable: taskBox.listenable(),
         builder: (context, value, child) {
           return NotificationListener<UserScrollNotification>(
-            onNotification: (notification) {
-              setState(
-                () {
-                  if (notification.direction == ScrollDirection.forward) {
-                    isFabVisible = true;
-                  }
-                  if (notification.direction == ScrollDirection.reverse) {
-                    isFabVisible = false;
-                  }
-                },
-              );
-
-              return true;
-            },
             child: taskBox.isEmpty
                 ? EmptyTask()
                 : Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 5),
                     child: ListView.builder(
                       physics: BouncingScrollPhysics(),
                       itemCount: taskBox.values.length,
@@ -61,9 +46,12 @@ class _homeScreenState extends State<homeScreen> {
 
                         return Animate(
                           effects: [
-                            FadeEffect(duration: Duration(milliseconds: 1050))
+                            FadeEffect(duration: Duration(milliseconds: 1000))
                           ],
                           child: Dismissible(
+                            behavior: HitTestBehavior.translucent,
+                            resizeDuration: Duration(seconds: 1),
+                            background: getBackDismissible(),
                             movementDuration: Duration(seconds: 1),
                             direction: DismissDirection.endToStart,
                             key: UniqueKey(),
@@ -80,6 +68,77 @@ class _homeScreenState extends State<homeScreen> {
           );
         },
       ),
+    );
+  }
+
+  Row getBackDismissible() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Container(
+              height: 120,
+              decoration: ShapeDecoration(
+                color: Color.fromARGB(255, 255, 81, 81),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                shadows: [
+                  BoxShadow(
+                    color: Color(0x05FC5252),
+                    blurRadius: 0,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x05FC5252),
+                    blurRadius: 5,
+                    offset: Offset(0, 2),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x05FC5252),
+                    blurRadius: 8,
+                    offset: Offset(0, 8),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x02FC5252),
+                    blurRadius: 11,
+                    offset: Offset(0, 19),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x00FC5252),
+                    blurRadius: 13,
+                    offset: Offset(0, 33),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x00FC5252),
+                    blurRadius: 15,
+                    offset: Offset(0, 52),
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text('حذف و پایان',
+                      style:
+                          TextStyle(color: Color.fromARGB(226, 255, 255, 255))),
+                  SizedBox(width: 10),
+                  Image.asset('assets/images/Delete (1).png', height: 23),
+                  SizedBox(width: 30),
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

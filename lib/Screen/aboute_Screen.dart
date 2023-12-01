@@ -36,7 +36,7 @@ class AboutePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'نسخه 1.5.0',
+                      'نسخه 1.5.1',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
@@ -64,7 +64,7 @@ class AboutePage extends StatelessWidget {
                   ),
                 ],
                 child: Text(
-                  'ساخته  ♥  توسط پارسا سجادیان',
+                  'ساخته ♥ توسط پارسا سجادیان',
                   style: TextStyle(
                     fontSize: 13,
                     color: Colors.white,
