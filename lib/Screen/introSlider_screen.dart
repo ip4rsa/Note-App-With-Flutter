@@ -14,7 +14,7 @@ class _introSliderScreenState extends State<introSliderScreen> {
   bool isFirstTime = false;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: MyIntroSlider(),
     );
   }
@@ -87,109 +87,115 @@ class MyIntroSlider extends StatelessWidget {
       ],
       speed: 2,
       pageBodies: [
-        Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(
-                height: 390,
-              ),
-              Text(
-                'وقتشه با برنامه عمل کنی',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: kDarkBlueColor,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w600,
+        SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 390,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'تسک ها و کارهایی که باید انجام بدی رو میتونی توی تسکیار مشخص کنی و انجامشون بدی',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black26,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
+                Text(
+                  'وقتشه با برنامه عمل کنی',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kDarkBlueColor,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'تسک ها و کارهایی که باید انجام بدی رو میتونی توی تسکیار مشخص کنی و انجامشون بدی',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(
-                height: 390,
-              ),
-              Text(
-                'تمومش کردی؟ پاکش کن',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: kDarkBlueColor,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w600,
+        SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 390,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'واسه پاک کردن تسک های انجام شده، کافیه اون تسک رو به سمت چب بکشی',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black26,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
+                Text(
+                  'تمومش کردی؟ پاکش کن',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kDarkBlueColor,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'واسه پاک کردن تسک های انجام شده، کافیه اون تسک رو به سمت چب بکشی',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(
-                height: 450,
-              ),
-              Text(
-                'به تَسکیار خوش اومدی',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: kDarkBlueColor,
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w600,
+        SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(
+                  height: 450,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                ':) موفق باشی',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black26,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
+                Text(
+                  'به تَسکیار خوش اومدی',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kDarkBlueColor,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  ':) موفق باشی',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

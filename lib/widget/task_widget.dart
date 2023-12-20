@@ -3,6 +3,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:note_app/Screen/EmptyTask.dart';
+import 'package:note_app/constants/colors.dart';
 import 'package:note_app/data/task.dart';
 import 'package:note_app/Screen/edit_task_screen.dart';
 
@@ -133,6 +135,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                       value: isBoxCheckd,
                       onChanged: (isChekd) {
                         setState(() {
+                          isBoxCheckd == true
+                              ? taskBox.length - 1
+                              : taskBox.length;
                           isBoxCheckd = isChekd!;
                           widget.task.isDone = isBoxCheckd;
                           isBoxCheckd == true ? _opacity = .5 : _opacity = 1;
@@ -158,6 +163,20 @@ class _TaskWidgetState extends State<TaskWidget> {
         ),
         const SizedBox(width: 15),
         Image.asset(widget.task.taskType.image),
+        Animate(
+          onPlay: (controller) => controller.repeat(reverse: true),
+          effects: [
+            ShimmerEffect(
+                duration: Duration(seconds: 2), delay: Duration(seconds: 1))
+          ],
+          child: Container(
+            width: 3,
+            height: 90,
+            decoration: BoxDecoration(
+                color: isBoxCheckd == true ? green : Colors.blue,
+                borderRadius: BorderRadius.circular(15)),
+          ),
+        )
       ],
     );
   }
