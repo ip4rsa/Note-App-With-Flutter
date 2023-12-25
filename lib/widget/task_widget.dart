@@ -176,7 +176,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                 color: isBoxCheckd == true ? green : Colors.blue,
                 borderRadius: BorderRadius.circular(15)),
           ),
-        )
+        ),
       ],
     );
   }

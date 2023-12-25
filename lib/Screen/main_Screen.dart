@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:note_app/Screen/add_task_screen.dart';
 import 'package:note_app/Screen/home_Screen.dart';
 import 'package:note_app/Screen/setting_Screen.dart';
+import 'package:note_app/Screen/yadAvar.dart';
 import 'package:note_app/constants/colors.dart';
 
 class MainScreen extends StatefulWidget {
@@ -62,9 +63,9 @@ class _MainScreenState extends State<MainScreen> {
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: Image.asset('assets/images/Settings.png', color: gray),
+                  icon: Image.asset('assets/images/Time (2).png', color: gray),
                   activeIcon:
-                      Image.asset('assets/images/Settings.png', color: green),
+                      Image.asset('assets/images/Time (2).png', color: green),
                   label: '',
                 ),
                 BottomNavigationBarItem(
@@ -90,7 +91,7 @@ List<Widget> _changeScreen() {
   return <Widget>[
     homeScreen(),
     addTaskScreen(),
-    SettingScreen(),
+    yadavar(),
     SettingScreen(),
   ];
 }
