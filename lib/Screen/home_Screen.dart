@@ -70,7 +70,7 @@ class _homeScreenState extends State<homeScreen> {
       ),
     );
   }
-
+ 
   Row getBackDismissible() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
