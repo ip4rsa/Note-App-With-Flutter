@@ -1,4 +1,4 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart'; 
 import 'package:note_app/data/task_taype_model.dart';
 
 part 'task.g.dart';
